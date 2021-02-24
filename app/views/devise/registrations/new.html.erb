@@ -46,6 +46,16 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
   </div>
   <br>
+  <p>
+  By voluntarily registering on this site, you consent to:
+    (i) the collection, use and disclosure by the XYZ Institutions of your personal information, including your personal health information for the purposes of:
+    (a) institutional planning to assist with the creation (b) notification and/or delivery of other programs and services (c) statistical analysis necessary to further assist
+    (d) planning of or response to a natural disaster or other event deemed to be an emergency (collectively, the "Purposes"); and (ii) being contacted by the XYZ Institutions for reasons related to the Purposes. For more information please review our Privacy Policy.
+  </p>
+  <%= f.radio_button :terms, "true" %> I agree
+  <br>
+  <%= f.radio_button :terms, "false", checked: true %> I do not agree
+  <br>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

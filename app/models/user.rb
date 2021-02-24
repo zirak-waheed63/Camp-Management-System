@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   validates :first_name, :last_name, :country, :phone_number, :encrypted_password, :email, presence: true
-  validates :phone_number, numericality: true, format: {with: /[0-9]{10-15}/,
+  validates :phone_number, numericality: true, length: {minimum: 10, maximum:15,
                                                         message: "must be 10-15 digit number."}
   validate :password_requirements_are_met
   # Include default devise modules. Others available are:

@@ -5,9 +5,15 @@ class User < ApplicationRecord
                                                         message: "must be 10-15 digit number."}
   validate :password_requirements_are_met
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  # :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
+
+
+
+  private
+
+
   def password_requirements_are_met
     rules = {
       ' must contain at least one lowercase letter' => /[a-z]+/,

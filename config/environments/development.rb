@@ -31,8 +31,20 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: '127.0.0.1', port: 3000 }
+  LetterOpener.configure do |config|
+    # To overrider the location for message storage.
+    # Default value is `tmp/letter_opener`
+    config.location = Rails.root.join('tmp', 'my_mails')
+
+    # To render only the message body, without any metadata or extra containers or styling.
+    # Default value is `:default` that renders styled message with showing useful metadata.
+    config.message_template = :light
+  end
+  
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.

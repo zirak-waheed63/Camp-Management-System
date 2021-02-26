@@ -3,7 +3,15 @@ class UsersController < ApplicationController
   def profile
     @user = current_user
   end
+  def index
+    @users = User.all
+  end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy!
+    redirect_to users_path, :notice => 'User has been deleted.'
+  end
   private
   def check_logged_in
     if current_user.nil?

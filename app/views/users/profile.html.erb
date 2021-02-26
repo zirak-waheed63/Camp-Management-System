@@ -1,0 +1,24 @@
+<h2>User Profile</h2>
+
+<div class="container">
+  <div class="field">
+     <b>Name:</b>
+    <%= @user.first_name + ' ' + @user.middle_name + ' ' + @user.last_name%>
+  </div>
+  <div class="field">
+    <b>Country:</b>
+    <%= @user.country %>
+  </div>
+
+  <div class="field">
+    <b>Phone Number:</b>
+    <%= @user.phone_number%>
+  </div>
+
+  <div class="field">
+    <b>Email:</b>
+    <%= @user.email%>
+  </div>
+
+  <%= link_to 'Edit Profile', edit_user_registration_path, class:'btn btn-primary' %>
+</div>

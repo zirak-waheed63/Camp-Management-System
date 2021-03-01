@@ -1,13 +1,13 @@
-<h2>User Profile</h2>
+<h2>My Profile</h2>
 
 <div class="container">
   <div class="field">
      <b>Name:</b>
     <%= @user.first_name + ' '%>
     <%if @user.middle_name.present? %>
-      <% @user.middle_name + ' '%>
+      <%= @user.middle_name + ' '%>
     <%end %>
-    <%@user.last_name%>
+    <%=@user.last_name%>
   </div>
   <div class="field">
     <b>Country:</b>

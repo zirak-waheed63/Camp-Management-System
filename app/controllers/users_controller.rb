@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_logged_in, only: :profile
+  before_action :is_admin?, only: :index
   def profile
     @user = current_user
   end

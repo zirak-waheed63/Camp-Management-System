@@ -2,10 +2,11 @@
   <div class="jumbotron">
     <div class="container">
       <h1>Welcome!</h1>
-      <p>Register to get started.</p>
-      <p>
-        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
-      </p>
+      <%if current_user.present? && current_user.admin? %>
+        <%= link_to 'List all Users', users_path, class: 'btn btn-primary btn-lg' %>
+        <br>
+        <%= link_to 'Invite User',new_user_invitation_path, class: 'btn btn-primary btn-lg' %>
+      <%end %>
     </div>
   </div>
 <% end %>

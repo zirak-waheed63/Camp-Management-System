@@ -15,7 +15,13 @@
   <tbody>
     <% @users.each do |user| %>
       <tr class="row">
-        <td class="col col-md-3"><%= user.first_name+ ' ' + user.middle_name + ' ' + user.last_name %></td>
+        <td class="col col-md-3">
+          <%= user.first_name + ' '%>
+          <%if user.middle_name.present? %>
+            <% user.middle_name + ' '%>
+          <%end %>
+          <%user.last_name%>
+        </td>
         <td class="col col-md-4"><%= user.email %></td>
         <td class="col col-md-2"><%= user.country %></td>
         <td class="col col-md-3"><%= user.phone_number %></td>
@@ -30,5 +36,3 @@
 </table>
 
 <br>
-
-<%#= link_to 'New User', new_user_path %>

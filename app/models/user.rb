@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validate :password_requirements_are_met
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
 
 

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  paginates_per 3
   validates :terms, acceptance: {message: 'not accepted: contact Admin at xyz@projectname.com ' }
   validates :first_name, :last_name, :country, :phone_number, :encrypted_password, :email, presence: true
   validates :phone_number, numericality: true, length: {minimum: 10, maximum:15,

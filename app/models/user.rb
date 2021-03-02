@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates :phone_number, numericality: true, length: {minimum: 10, maximum:15,
                                                         message: "must be 10-15 digit number."}
   validate :password_requirements_are_met
+  has_one_attached :avatar
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,

@@ -1,6 +1,12 @@
 <h2>Show User Profile</h2>
 
 <div class="container">
+
+  <div>
+    <%if @user.avatar.attached? %>
+      <img src="<%=url_for(@user.avatar)%>" class="img-circle img-responsive" style="max-height: 200px; max-width: 200px">
+    <%end %>
+  </div>
   <div class="field">
      <b>Name:</b>
     <%= @user.first_name + ' '%>
@@ -24,5 +30,5 @@
     <%= @user.email%>
   </div>
 
-  <%#= link_to 'Edit Profile', edit_user_registration_path, class:'btn btn-primary' %>
+  <%= link_to 'Edit User', edit_user_path(@user), class:'btn btn-primary' %>
 </div>

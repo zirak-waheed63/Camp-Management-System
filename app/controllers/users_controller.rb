@@ -8,7 +8,13 @@ class UsersController < ApplicationController
 
   def index
     # @users = User.all
-    @users = User.order("#{sort_column} #{sort_direction}").page params[:page]
+    @users = if params[:search].present?
+               @search = params[:search]
+               User.search(params[:search]).order("#{sort_column} #{sort_direction}").page params[:page]
+             else
+               @search = ''
+               User.order("#{sort_column} #{sort_direction}").page params[:page]
+             end
   end
 
   def show
@@ -23,14 +29,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if params[:user][:password].present?
       if @user.update(user_params)
-        redirect_to @user, notice: "User updated successfully"
+        redirect_to @user, notice: 'User updated successfully'
       else
         render 'edit'
       end
     else
       if @user.update(params.require(:user).permit(:first_name, :middle_name, :last_name, :phone_number,
                                                    :country, :email, :avatar))
-        redirect_to @user, notice: "User updated successfully"
+        redirect_to @user, notice: 'User updated successfully'
       else
         render 'edit'
       end
@@ -55,14 +61,14 @@ class UsersController < ApplicationController
   end
 
   def sortable_columns
-    ["first_name", "phone_number", "country", "email"]
+    ['first_name', 'phone_number', 'country', 'email']
   end
 
   def sort_column
-    sortable_columns.include?(params[:column]) ? params[:column] : "first_name"
+    sortable_columns.include?(params[:column]) ? params[:column] : 'first_name'
   end
 
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 end

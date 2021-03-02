@@ -3,7 +3,7 @@ class User < ApplicationRecord
   validates :terms, acceptance: {message: 'not accepted: contact Admin at xyz@projectname.com ' }
   validates :first_name, :last_name, :country, :phone_number, :encrypted_password, :email, presence: true
   validates :phone_number, numericality: true, length: {minimum: 10, maximum:15,
-                                                        message: "must be 10-15 digit number."}
+                                                        message: 'must be 10-15 digit number.'}
   validate :password_requirements_are_met
   has_one_attached :avatar
   # Include default devise modules. Others available are:
@@ -29,5 +29,8 @@ class User < ApplicationRecord
     end
   end
 
-
+  def self.search(query)
+    where('first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR id LIKE ?',
+          "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
+  end
 end

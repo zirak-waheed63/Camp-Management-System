@@ -1,5 +1,12 @@
 
 <h1>All Users</h1>
+  <div>
+    <%= form_tag search_users_path, class: 'navbar-form navbar-right', method: :get do %>
+      <%= search_field_tag :search, @search %>
+      <%= submit_tag "search", class: 'btn btn-default', :name => nil %>
+    <% end %>
+  </div>
+<br><br>
 <table>
   <thead>
     <tr class="row">

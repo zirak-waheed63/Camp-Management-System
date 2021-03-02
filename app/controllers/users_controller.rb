@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :check_logged_in, only: :profile
   before_action :is_admin?, except: [:profile]
   def profile
@@ -7,7 +8,7 @@ class UsersController < ApplicationController
 
   def index
     # @users = User.all
-    @users = User.page params[:page]
+    @users = User.order("#{sort_column} #{sort_direction}").page params[:page]
   end
 
   def show
@@ -51,5 +52,17 @@ class UsersController < ApplicationController
 
   def check_logged_in
     redirect_to user_session_path if current_user.nil?
+  end
+
+  def sortable_columns
+    ["first_name", "phone_number", "country", "email"]
+  end
+
+  def sort_column
+    sortable_columns.include?(params[:column]) ? params[:column] : "first_name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

@@ -3,9 +3,11 @@
     <div class="container">
       <h1>Welcome!</h1>
       <%if current_user.present? && current_user.admin? %>
-        <%= link_to 'List all Users', users_path, class: 'btn btn-primary btn-lg' %>
-        <br>
-        <%= link_to 'Invite User',new_user_invitation_path, class: 'btn btn-primary btn-lg' %>
+        <%= link_to 'List all Users', users_path, class: 'btn btn-default' %>
+        <br><br>
+        <%= link_to 'Invite User',new_user_invitation_path, class: 'btn btn-default' %>
+        <br><br>
+        <%= link_to 'Camp Locations',camp_locations_path, class: 'btn btn-default' %>
       <%end %>
     </div>
   </div>

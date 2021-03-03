@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :camp_locations
   devise_for :users
   resources :users, except: [:new, :create] do
     get 'search', to: 'users#index', on: :collection

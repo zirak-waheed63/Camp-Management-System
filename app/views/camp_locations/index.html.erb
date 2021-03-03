@@ -1,0 +1,29 @@
+
+
+<h1>Camp Locations</h1>
+
+<table>
+  <thead>
+    <tr class="row">
+      <th class="col col-sm-1">Id</th>
+      <th class="col col-sm-2">Name</th>
+      <th colspan="3" class="col col-sm-3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @camp_locations.each do |camp_location| %>
+      <tr class="row">
+        <td class="col col-sm-1"><%= camp_location.id %></td>
+        <td class="col col-sm-3"><%= camp_location.name %></td>
+        <td class=""><%= link_to 'Show', camp_location %></td>
+        <td class=""><%= link_to 'Edit', edit_camp_location_path(camp_location) %></td>
+        <td class=""><%= link_to 'Destroy', camp_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Camp Location', new_camp_location_path, class: "btn btn-info" %>

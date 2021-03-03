@@ -6,6 +6,8 @@
       <%= submit_tag "search", class: 'btn btn-default', :name => nil %>
     <% end %>
   </div>
+<%= link_to 'CSV Download', users_path(:format => :csv),class: 'navbar-form navbar-left' %>
+
 <br><br>
 <table>
   <thead>

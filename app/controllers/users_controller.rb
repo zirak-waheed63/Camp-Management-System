@@ -15,6 +15,10 @@ class UsersController < ApplicationController
                @search = ''
                User.order("#{sort_column} #{sort_direction}").page params[:page]
              end
+    respond_to do |format|
+      format.html
+      format.csv { send_data User.all.to_csv, filename: "users-#{Date.today}.csv" }
+    end
   end
 
   def show

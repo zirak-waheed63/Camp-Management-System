@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :camps do
+    member do
+        patch :toggle_status
+    end
+  end
   resources :camp_locations
   devise_for :users
   resources :users, except: [:new, :create] do

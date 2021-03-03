@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_063144) do
+ActiveRecord::Schema.define(version: 2021_03_03_090730) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -37,6 +37,22 @@ ActiveRecord::Schema.define(version: 2021_03_03_063144) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "camp_locations_camps", id: false, force: :cascade do |t|
+    t.integer "camp_id", null: false
+    t.integer "camp_location_id", null: false
+    t.index ["camp_id", "camp_location_id"], name: "index_camp_locations_camps_on_camp_id_and_camp_location_id"
+    t.index ["camp_location_id", "camp_id"], name: "index_camp_locations_camps_on_camp_location_id_and_camp_id"
+  end
+
+  create_table "camps", force: :cascade do |t|
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "status", default: false
   end
 
   create_table "users", force: :cascade do |t|

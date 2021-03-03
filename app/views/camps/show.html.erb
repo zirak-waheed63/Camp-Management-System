@@ -1,0 +1,27 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @camp.name %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @camp.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @camp.end_date %>
+</p>
+
+<p>
+  <strong>Location(s):</strong>
+  <ul>
+  <% @camp.camp_locations.each do |c| %>
+   <li><%= c.name %></li>
+  <%end %>
+  </ul>
+</p>
+
+<!--<%#= link_to 'Edit', edit_camp_path(@camp) %> |-->
+<%= link_to 'Back', camps_path %>

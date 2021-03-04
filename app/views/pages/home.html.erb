@@ -1,0 +1,24 @@
+<h1>All available camps</h1>
+
+<table>
+  <thead>
+    <tr class="row">
+      <th class="col col-sm-2">Name</th>
+      <th class="col col-sm-1">Start date</th>
+      <th class="col col-sm-1">End date</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @camps.each do |camp| %>
+      <tr class="row">
+        <td class="col col-sm-2"><%= camp.name %></td>
+        <td class="col col-sm-2"><%= camp.start_date %></td>
+        <td class="col col-sm-2"><%= camp.end_date %></td>
+        <td><%= link_to 'Start', introduction_camp_path(camp), class: "btn-outline-light btn-xs btn-info active" %></td>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

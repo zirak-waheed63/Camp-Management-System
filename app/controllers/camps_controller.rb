@@ -1,6 +1,7 @@
 class CampsController < ApplicationController
-  before_action :set_camp, only: %i[ show edit update destroy toggle_status]
-  before_action :is_admin?, except: [:show]
+  before_action :set_camp, only: %i[ show edit update destroy toggle_status introduction]
+  before_action :is_admin?, except: [:introduction]
+  before_action :is_user?, only: [:introduction]
   # GET /camps or /camps.json
   def index
     @camps = Camp.all
@@ -55,9 +56,17 @@ class CampsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def toggle_status
     @camp.toggle!(:status)
     redirect_to camps_path
+  end
+
+  def introduction
+    if Date.today > @camp.end_date
+      flash[:alert] = "Camp has ended. Please participate in next camp"
+      redirect_to root_path
+    end
   end
   private
     # Use callbacks to share common setup or constraints between actions.

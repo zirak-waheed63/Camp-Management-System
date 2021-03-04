@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-
   protected
 
   def configure_permitted_parameters
@@ -21,6 +20,12 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin?
-    redirect_to root_path if current_user.nil? || !current_user.admin?
+    redirect_to new_user_session_path if current_user.nil?
+    redirect_to root_path if current_user.present? && !current_user.admin?
+  end
+
+  def is_user?
+    redirect_to new_user_session_path if current_user.nil?
+    redirect_to admin_root_path if current_user.present? && current_user.admin?
   end
 end

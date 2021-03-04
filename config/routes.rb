@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :camps do
     member do
-        patch :toggle_status
+      patch :toggle_status
+      get :introduction
     end
   end
   resources :camp_locations
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
   end
 
   get 'profile', to: 'users#profile'
-  root 'pages#index'
+  root 'pages#home'
+  namespace 'admin' do
+    root 'dashboard#index'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

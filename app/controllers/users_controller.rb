@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :check_logged_in, only: :profile
-  before_action :is_admin?, except: [:profile]
+  before_action :is_admin?, only: %i[index show edit update destroy]
   def profile
     @user = current_user
   end

@@ -1,0 +1,28 @@
+
+<h1>Dashboard</h1>
+
+<table>
+  <thead>
+    <tr class="row">
+      <th class="col col-sm-1">Id</th>
+      <th class="col col-sm-2">Camp name</th>
+      <th class="col col-sm-2">Status</th>
+      <th colspan="2" class="col col-sm-2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @applications.each do |application| %>
+      <tr class="row">
+        <td class="col col-sm-1"><%= application.id %></td>
+        <td class="col col-sm-2"><%= application.camp.name %></td>
+        <td class="col col-sm-2"><%= application.status %>
+        <td class="col col-sm-1"><%= link_to 'View', camp_view_application_path(camp_id: application.camp.id), class: "btn-outline-light btn-xs btn-info active" %></td>
+        <% unless application.status == 'active' %>
+        <td class="col col-sm-1"><%= link_to 'Edit', camp_camp_application_path(application.status.to_sym, camp_id: application.camp.id),
+                        class: "btn-outline-light btn-xs btn-success active" %></td>
+        <%end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

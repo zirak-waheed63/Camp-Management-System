@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_090730) do
+ActiveRecord::Schema.define(version: 2021_03_08_115537) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,26 @@ ActiveRecord::Schema.define(version: 2021_03_03_090730) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "camp_applications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "camp_id"
+    t.string "name"
+    t.string "email"
+    t.string "gender"
+    t.string "step_two"
+    t.string "step_three"
+    t.string "step_four"
+    t.string "step_five"
+    t.string "step_six"
+    t.string "step_seven"
+    t.string "step_eight"
+    t.string "step_nine"
+    t.string "step_ten"
+    t.string "status", default: "personal_information"
+    t.index ["camp_id"], name: "index_camp_applications_on_camp_id"
+    t.index ["user_id"], name: "index_camp_applications_on_user_id"
   end
 
   create_table "camp_locations", force: :cascade do |t|

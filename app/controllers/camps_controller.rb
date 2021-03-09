@@ -4,7 +4,7 @@ class CampsController < ApplicationController
   before_action :is_user?, only: [:introduction]
   # GET /camps or /camps.json
   def index
-    @camps = Camp.all
+    @camps = Camp.joins(:camp_application)
   end
 
   # GET /camps/1 or /camps/1.json

@@ -7,7 +7,6 @@
 <div class="progress">
   <div class="progress-bar" role="progressbar" aria-valuenow="<%=@progress %>"
   aria-valuemin="0" aria-valuemax="100" style="width: <%=@progress %>%">
-    <span class=""><%=@progress %>% Complete</span>
   </div>
 </div>
 <%= form_for @camp_application, url: wizard_path, method: :put do |f| %>
@@ -34,8 +33,6 @@
       <%= f.label :gender %><br />
       <%= f.select :gender, ['Male','Female'] %>
     </div>
-
-    <%=f.hidden_field :camp_id, value: params[:camp_id] %>
     <div class="actions">
       <%= f.submit "next" %>
     </div>

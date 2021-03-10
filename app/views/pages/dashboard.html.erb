@@ -1,28 +1,23 @@
+<h2>You have completed <%=@progress%>% of your application</h2>
+<p>Welcome and thank you for applying to be a participant at CONNECT . CONNECT is an international programme for
+  students ages 14 to 17 from around the world which takes place in partnership.<p>
 
-<h1>Dashboard</h1>
+<p>The purpose of this application is for the CONNECT Placement Team to get to know you and learn about your interests,
+  passions, and motivations for registering. Before registering, we encourage you to visit our website and learn more
+  about our offerings and the registration process.</p>
 
-<table>
-  <thead>
-    <tr class="row">
-      <th class="col col-sm-1">Id</th>
-      <th class="col col-sm-2">Camp name</th>
-      <th class="col col-sm-2">Status</th>
-      <th colspan="2" class="col col-sm-2"></th>
-    </tr>
-  </thead>
+<p>This registration form is for both CONNECT camps that will take place during:</p>
+<ul>
+  <li><strong><%= "#{@camp.name} : #{@camp.start_date} to #{@camp.end_date}"%></strong></li>
+</ul>
+If you have any questions during the application process, please feel free to email  at info@projectname.com.
 
-  <tbody>
-    <% @applications.each do |application| %>
-      <tr class="row">
-        <td class="col col-sm-1"><%= application.id %></td>
-        <td class="col col-sm-2"><%= application.camp.name %></td>
-        <td class="col col-sm-2"><%= application.status %>
-        <td class="col col-sm-1"><%= link_to 'View', camp_view_application_path(camp_id: application.camp.id), class: "btn-outline-light btn-xs btn-info active" %></td>
-        <% unless application.status == 'active' %>
-        <td class="col col-sm-1"><%= link_to 'Edit', camp_camp_application_path(application.status.to_sym, camp_id: application.camp.id),
-                        class: "btn-outline-light btn-xs btn-success active" %></td>
-        <%end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<p>I AKNOWLEDGE AND AGREE THAT ANY INFORMATION PROVIDED IN THIS APPLICATION WILL BE COLLECTED AND PROCESSED IN
+  ACCORDANCE WITH THE <a href="https://www.google.com">Privacy Policy</a>.</p>
+  	<%if @camp_application.status == 'personal_information'%>
+ 		<%= link_to 'start', camp_application_path(:personal_information), class: "btn btn-success active" %>
+ 	<%elsif @camp_application.status == 'active'%>
+		<%= link_to 'Show', view_application_path, class: "btn btn-success active" %>
+ 	<%elsif%>
+ 		<%= link_to 'Continue to complete application', camp_application_path(@camp_application.status.to_sym), class: "btn btn-success active" %>
+	<%end%>

@@ -47,8 +47,12 @@ class CampApplicationsController < Wicked::WizardController
   end
 
   def set_application
-    @camp_application = CampApplication.find_by(camp_id: params[:camp_id], user_id: current_user.id)
-    redirect_to dashboard_path, alert: 'No application found' if @camp_application.nil?
+    @camp_application = CampApplication.find_by(user_id: current_user.id)
+    if Date.today > @camp_application.camp.end_date
+      flash[:alert] = 'Camp has ended. Please participate in next camp'
+      redirect_to root_path
+    end
+
   end
 
   def application_params
@@ -58,6 +62,6 @@ class CampApplicationsController < Wicked::WizardController
   end
 
   def active?
-    redirect_to dashboard_path if @camp_application.status == 'active'
+    redirect_to root_path if @camp_application.status == 'active'
   end
 end

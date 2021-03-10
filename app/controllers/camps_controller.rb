@@ -62,12 +62,6 @@ class CampsController < ApplicationController
     redirect_to camps_path
   end
 
-  def introduction
-    if Date.today > @camp.end_date
-      flash[:alert] = "Camp has ended. Please participate in next camp"
-      redirect_to root_path
-    end
-  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_camp

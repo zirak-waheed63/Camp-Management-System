@@ -1,3 +1,4 @@
+<h2>Step Nine</h2>
 <div class="progress">
   <div class="progress-bar" role="progressbar" aria-valuenow="<%=@progress %>"
   aria-valuemin="0" aria-valuemax="100" style="width: <%=@progress %>%">
@@ -10,7 +11,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "next" %>
+      <%= f.submit "update", data: show_confirmation(@camp_application, 'step_nine')%>
     </div>
 <%end %>
-<%= link_to 'back', previous_wizard_path %>
+<%= link_to 'back', previous_wizard_path %> | <%= link_to 'skip', next_wizard_path %>

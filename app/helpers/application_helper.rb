@@ -14,4 +14,11 @@ module ApplicationHelper
     country = ISO3166::Country[country_code]
     country.translations[I18n.locale.to_s] || country.name
   end
+  def get_class(attribute)
+    if attribute.present?
+      'success'
+    else
+      'default'
+    end
+  end
 end

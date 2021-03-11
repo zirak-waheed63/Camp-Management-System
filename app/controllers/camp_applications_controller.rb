@@ -7,31 +7,33 @@ class CampApplicationsController < Wicked::WizardController
         :step_eight, :step_nine, :step_ten
 
   def show
-    @user = current_user
-    if @camp_application.name.nil?
-      @camp_application.name = "#{@user.first_name} #{@user.middle_name} #{@user.last_name}"
-    end
-    @camp_application.email = @user.email if @camp_application.email.nil?
-    if !@camp_application.image.attached? && current_user.avatar.attached?
-      @camp_application.image.attach(current_user.avatar.blob)
+    if current_step?(:personal_information)
+      if @camp_application.name.nil?
+        @camp_application.name = "#{current_user.first_name} #{current_user.middle_name} #{current_user.last_name}"
+      end
+      @camp_application.email = current_user.email if @camp_application.email.nil?
+      if !@camp_application.image.attached? && current_user.avatar.attached?
+        @camp_application.image.attach(current_user.avatar.blob)
+      end
     end
     render_wizard
   end
 
   def update
-    params[:camp_application][:status] = next_step
-    if step == steps.last
-      params[:camp_application][:status] = 'active'
-      flash[:notice] = 'Application submitted successfully'
-    end
-
     @camp_application.update_attributes(application_params)
-    @user = current_user
+    @camp_application.update_progress
+    @camp_application.update_status
+    
+    if @camp_application.progress == 100
+      flash[:notice] = 'Application submitted successfully'
+    else
+      jump_to(@camp_application.status.to_sym)
+    end
     render_wizard @camp_application
   end
 
   def finish_wizard_path
-    dashboard_path
+    root_path
   end
 
   def view_application; end

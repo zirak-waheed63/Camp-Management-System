@@ -3,7 +3,9 @@ class PagesController < ApplicationController
   def dashboard
     @camp_application = CampApplication.find_by(user_id: current_user.id)
     if @camp_application.nil?
-      @camp_application = CampApplication.create(user: current_user, camp: Camp.find_by(status: true))
+    	camp = Camp.find_by(status: true)
+    	flash[:alert] = "No active camp available currently" if camp.nil?
+      @camp_application = CampApplication.create(user: current_user, camp: camp)
     end
      @camp = @camp_application.camp
      @camp_application.update_progress

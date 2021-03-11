@@ -1,4 +1,5 @@
 <h2>You have completed <%=@progress%>% of your application</h2>
+<%if @camp.present?%>
 <p>Welcome and thank you for applying to be a participant at CONNECT . CONNECT is an international programme for
   students ages 14 to 17 from around the world which takes place in partnership.<p>
 
@@ -8,6 +9,7 @@
 
 <p>This registration form is for both CONNECT camps that will take place during:</p>
 <ul>
+
   <li><strong><%= "#{@camp.name} : #{@camp.start_date} to #{@camp.end_date}"%></strong></li>
 </ul>
 If you have any questions during the application process, please feel free to email  at info@projectname.com.
@@ -23,7 +25,7 @@ If you have any questions during the application process, please feel free to em
  		<%= link_to 'Continue to complete application', camp_application_path(@camp_application.status.to_sym), class: "btn btn-info active" %>
 	<%end%>
 	</p>
-
+	<%end%>
 	<table class="table table-hover">
 		<tbody>
 		<tr class="row"><td><%= link_to 'Personal Information', camp_application_path(:personal_information), class: "btn btn-#{get_class(@camp_application.name.present?)} btn-lg btn-block active" %></td></tr>

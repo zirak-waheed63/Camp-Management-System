@@ -3,6 +3,7 @@ class CampApplicationsController < Wicked::WizardController
   before_action :is_user?
   before_action :set_application
   before_action :active?, except: :view_application
+  before_action :validate_dates, only: [:show, :update]
   steps :personal_information, :step_two, :step_three, :step_four, :step_five, :step_six, :step_seven,
         :step_eight, :step_nine, :step_ten
 
@@ -23,7 +24,7 @@ class CampApplicationsController < Wicked::WizardController
     @camp_application.update_attributes(application_params)
     @camp_application.update_progress
     @camp_application.update_status
-    
+
     if @camp_application.progress == 100
       flash[:notice] = 'Application submitted successfully'
     else
@@ -50,11 +51,14 @@ class CampApplicationsController < Wicked::WizardController
 
   def set_application
     @camp_application = CampApplication.find_by(user_id: current_user.id)
+    redirect_to root_path, alert: 'No application found.' if @camp_application.nil?
+  end
+
+  def validate_dates
     if Date.today > @camp_application.camp.end_date
       flash[:alert] = 'Camp has ended. Please participate in next camp'
       redirect_to root_path
     end
-
   end
 
   def application_params
@@ -64,6 +68,6 @@ class CampApplicationsController < Wicked::WizardController
   end
 
   def active?
-    redirect_to root_path if @camp_application.status == 'active'
+    redirect_to root_path, alert: 'Application has been submitted. You cannot edit now' if @camp_application.status == 'active'
   end
 end

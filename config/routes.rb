@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+
   root 'pages#dashboard'
+
   devise_for :users
+
   resources :camps do
     member do
       patch :toggle_status
@@ -19,6 +22,10 @@ Rails.application.routes.draw do
 
   namespace 'admin' do
     root 'dashboard#index'
+    
+    resources :camp_applications, param: :application_id do
+    	get 'view', on: :member
+		end
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end

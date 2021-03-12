@@ -39,25 +39,25 @@ class CampApplication < ApplicationRecord
   end
 
   def update_status
-  	if name.nil?
+  	if !name.present?
   		status = 'personal_information'
-  	elsif step_two.nil?
+  	elsif !step_two.present?
   		status = 'step_two'
-  	elsif step_three.nil?
+  	elsif !step_three.present?
   		status = 'step_three'
-  	elsif step_four.nil?
+  	elsif !step_four.present?
   		status = 'step_four'
-  	elsif step_five.nil?
+  	elsif !step_five.present?
   		status = 'step_five'
-  	elsif step_six.nil?
+  	elsif !step_six.present?
   		status = 'step_six'
-  	elsif step_seven.nil?
+  	elsif !step_seven.present?
   		status = 'step_seven'
-  	elsif step_eight.nil?
+  	elsif !step_eight.present?
   		status = 'step_eight'
-  	elsif step_nine.nil?
+  	elsif !step_nine.present?
   		status = 'step_nine'
-  	elsif step_ten.nil?
+  	elsif !step_ten.present?
   		status = 'step_ten'
   	elsif progress = 100
   		status = 'active'

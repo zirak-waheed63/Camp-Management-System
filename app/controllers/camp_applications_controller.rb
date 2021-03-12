@@ -64,7 +64,7 @@ class CampApplicationsController < Wicked::WizardController
   def application_params
     params.require(:camp_application).permit(:image, :name, :email, :gender, :step_two, :step_three, :step_four,
                                              :step_five, :step_six, :step_seven, :step_eight, :step_nine, :step_ten,
-                                             :camp_id, :status)
+                                             :camp_id)
   end
 
   def active?

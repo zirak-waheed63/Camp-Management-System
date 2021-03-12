@@ -1,0 +1,17 @@
+<h2>Step Ten</h2>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="<%=@progress %>"
+  aria-valuemin="0" aria-valuemax="100" style="width: <%=@progress %>%">
+  </div>
+</div>
+<%= form_for @camp_application, url: wizard_path, method: :put do |f| %>
+  <div class="field">
+      <%= f.label :step_ten %><br />
+      <%= f.text_field :step_ten %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
+<%end %>
+<%= link_to 'back', previous_wizard_path %>

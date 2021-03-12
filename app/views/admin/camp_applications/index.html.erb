@@ -1,0 +1,32 @@
+<h1>Camp Applications</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="row">
+      <th class="col col-sm-1">Application Id</th>
+      <th class="col col-sm-2">Name</th>
+      <th class="col col-sm-2">Email</th>
+      <th class="col col-sm-1">Progress</th>
+      <th class="col col-sm-2">Camp Name</th>
+      <th class="col col-sm-1">Status</th>
+      <th colspan="3" class="col col-sm-3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @camp_applications.each do |application| %>
+      <tr class="row">
+        <td class="col col-sm-2"><%= application.id %></td>
+        <td class="col col-sm-2"><%= application.name %></td>
+        <td class="col col-sm-2"><%= application.email %></td>
+        <td class="col col-sm-1"><%= application.progress %>%</td>
+        <td class="col col-sm-2"><%= application.camp.name %></td>
+        <td class="col col-sm-1"><%= application.status == 'active'? 'Completed':'In Progress ' %></td>
+
+        <td><%= link_to 'Show', view_admin_camp_application_path(application.id) %></td>
+        <td><%= link_to 'Edit', admin_camp_application_path(application_id: application.id, id: 'personal_information')%></td>
+        <td><%= link_to 'Destroy', admin_camp_application_path(application), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    # @users = User.all
     @users = if params[:search].present?
                @search = params[:search]
                User.search(params[:search]).order("#{sort_column} #{sort_direction}").page params[:page]

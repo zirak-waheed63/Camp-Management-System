@@ -2,6 +2,7 @@ class Admin::CampApplicationsController < Wicked::WizardController
 	before_action :set_application, except: :index
 	before_action :set_progress, only: [:show]
 	before_action :is_admin?
+  
   steps :personal_information, :step_two, :step_three, :step_four, :step_five, :step_six, :step_seven,
         :step_eight, :step_nine, :step_ten
 	

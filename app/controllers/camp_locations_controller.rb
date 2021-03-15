@@ -1,25 +1,21 @@
 class CampLocationsController < ApplicationController
   before_action :set_camp_location, only: %i[ show edit update destroy ]
   before_action :is_admin?
-  # GET /camp_locations or /camp_locations.json
+
   def index
     @camp_locations = CampLocation.all
   end
 
-  # GET /camp_locations/1 or /camp_locations/1.json
   def show
   end
 
-  # GET /camp_locations/new
   def new
     @camp_location = CampLocation.new
   end
 
-  # GET /camp_locations/1/edit
   def edit
   end
 
-  # POST /camp_locations or /camp_locations.json
   def create
     @camp_location = CampLocation.new(camp_location_params)
 
@@ -34,7 +30,6 @@ class CampLocationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /camp_locations/1 or /camp_locations/1.json
   def update
     respond_to do |format|
       if @camp_location.update(camp_location_params)
@@ -47,7 +42,6 @@ class CampLocationsController < ApplicationController
     end
   end
 
-  # DELETE /camp_locations/1 or /camp_locations/1.json
   def destroy
     @camp_location.destroy
     respond_to do |format|
@@ -57,12 +51,10 @@ class CampLocationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_camp_location
       @camp_location = CampLocation.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def camp_location_params
       params.require(:camp_location).permit(:name)
     end

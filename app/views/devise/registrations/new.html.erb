@@ -1,51 +1,55 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
   <div class="flex">
     <div class="field">
-      <%= f.label :first_name %><br />
+      <%= f.label :first_name, 'First Name*' %><br />
+      <%=resource.errors.full_messages_for(:first_name).join(', ')%>
       <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", required: true %>
     </div>
 
     <div class="field">
-      <%= f.label :middle_name %><br />
+      <%= f.label :middle_name, 'Middle Name' %><br />
+      <%=resource.errors.full_messages_for(:middle_name).join(', ')%>
       <%= f.text_field :middle_name, autofocus: true, autocomplete: "middle_name" %>
     </div>
 
     <div class="field">
-      <%= f.label :last_name %><br />
+      <%= f.label :last_name, 'Last Name*' %><br />
+      <%=resource.errors.full_messages_for(:last_name).join(', ')%>
       <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", required: true %>
     </div>
   </div>
 
   <div class="field">
-    <%= f.label :country %><br />
+    <%= f.label :country, 'Country*' %><br />
+    <%=resource.errors.full_messages_for(:country).join(', ')%>
     <%= f.country_select :country %>
   </div>
 
   <div class="field">
-    <%= f.label :phone_number %><br />
+    <%= f.label :phone_number, 'Phone Number*' %><br />
+    <%=resource.errors.full_messages_for(:phone_number).join(', ')%>
     <%= f.telephone_field :phone_number, required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, 'Email*' %><br />
+    <%=resource.errors.full_messages_for(:email).join(', ')%>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-    <br>
+    <%= f.label :password, 'Password*' %>
+    <%=resource.errors.full_messages_for(:password).join(', ')%>
+    <em>(<%= 7 %> characters minimum)</em>
+    <br />
     <%= f.password_field :password, autocomplete: "new-password", required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, 'Password Confirmation*' %><br />
+    <%=resource.errors.full_messages_for(:password_confirmation).join(', ')%>
     <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
   </div>
   <br>
@@ -55,13 +59,22 @@
     (a) institutional planning to assist with the creation (b) notification and/or delivery of other programs and services (c) statistical analysis necessary to further assist
     (d) planning of or response to a natural disaster or other event deemed to be an emergency (collectively, the "Purposes"); and (ii) being contacted by the XYZ Institutions for reasons related to the Purposes. For more information please review our Privacy Policy.
   </p>
-  <%= f.radio_button :terms, "true" %> I agree
+
+  <p>
+    <%= f.radio_button :terms, "true" %> I agree
+  </p>
+
+  <%=resource.errors.full_messages_for(:terms).join(', ')%>
   <br>
-  <%= f.radio_button :terms, "false", checked: true %> I do not agree
+  <p>
+    <%= f.radio_button :terms, "false"%> I do not agree
+  </p>
+
   <br>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
+  
 <% end %>
   <br>
 

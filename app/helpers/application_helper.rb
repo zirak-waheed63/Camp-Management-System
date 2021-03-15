@@ -10,10 +10,12 @@ module ApplicationHelper
     icon = column == sort_column ? icon : ""
     link_to "#{title} <span class='#{icon}'></span>".html_safe, {column: column, direction: direction}
   end
+
   def country_name(country_code)
     country = ISO3166::Country[country_code]
     country.translations[I18n.locale.to_s] || country.name
   end
+  
   def get_class(attribute)
     if attribute.present?
       'success'

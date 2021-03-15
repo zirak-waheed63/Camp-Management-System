@@ -6,6 +6,7 @@
       <img src="<%=url_for(@user.avatar)%>" class="img-circle img-responsive" style="height: 200px; width: 200px">
     <%end %>
   </div>
+
   <div class="field">
      <b>Name:</b>
     <%= @user.first_name + ' '%>
@@ -14,6 +15,7 @@
     <%end %>
     <%=@user.last_name%>
   </div>
+  
   <div class="field">
     <b>Country:</b>
     <%= country_name(@user.country) %>

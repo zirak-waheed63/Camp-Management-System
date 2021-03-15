@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |u|
       u.permit(:first_name, :middle_name, :last_name, :country,
-               :phone_number, :email, :password, :terms)
+               :phone_number, :email, :password, :password_confirmation, :terms)
     end
     devise_parameter_sanitizer.permit(:invite,
                                       keys: %i[first_name middle_name last_name phone_number country email])

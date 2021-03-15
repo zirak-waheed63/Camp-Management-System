@@ -4,6 +4,7 @@ class CampApplicationsController < Wicked::WizardController
   before_action :set_application
   before_action :active?, except: :view_application
   before_action :validate_dates, only: [:show, :update]
+
   steps :personal_information, :step_two, :step_three, :step_four, :step_five, :step_six, :step_seven,
         :step_eight, :step_nine, :step_ten
 
@@ -30,6 +31,7 @@ class CampApplicationsController < Wicked::WizardController
     else
       jump_to(@camp_application.status.to_sym)
     end
+
     render_wizard @camp_application
   end
 

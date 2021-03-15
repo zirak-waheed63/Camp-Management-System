@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  validates :terms, acceptance: {message: 'not accepted: contact Admin at xyz@projectname.com ' }
+  validates :terms, acceptance: {message: 'not accepted: contact Admin at xyz@projectname.com ' } , allow_nil: false
+  # validates_acceptance_of :terms, :on => :create, :allow_nil => false, :message => :terms_not_accepted_yoo
+
   validates :first_name, :last_name, :country, :phone_number, :encrypted_password, :email, presence: true
   validates :phone_number, numericality: true, length: {minimum: 10, maximum:15,
                                                         message: "must be 10-15 digit number."}

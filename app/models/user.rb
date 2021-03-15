@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   validates :first_name, :last_name, :country, :phone_number, :encrypted_password, :email, presence: true
-  validates :phone_number, numericality: true, length: {minimum: 10, maximum:15,
-                                                        message: 'must be 10-15 digit number.'}
+  validates :phone_number, numericality: true
   validate :password_requirements_are_met
   validates :email,
   format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: "invalid"  }, length: { minimum: 4, maximum: 254 }  

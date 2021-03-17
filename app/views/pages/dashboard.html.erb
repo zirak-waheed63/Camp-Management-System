@@ -17,9 +17,7 @@ If you have any questions during the application process, please feel free to em
 <p>I AKNOWLEDGE AND AGREE THAT ANY INFORMATION PROVIDED IN THIS APPLICATION WILL BE COLLECTED AND PROCESSED IN
   ACCORDANCE WITH THE <a href="https://www.google.com">Privacy Policy</a>.</p>
   	<p>
-  	<%if @camp_application.progress == 0%>
- 		<%= link_to 'start', camp_application_path(:personal_information), class: "btn btn-info active" %>
- 	<%elsif @camp_application.progress == 100%>
+ 	<%if @camp_application.progress == 100%>
 		<%= link_to 'Show', view_application_path, class: "btn btn-info active" %>
  	<%else%>
  		<%= link_to 'Continue to complete application', camp_application_path(@camp_application.status.to_sym), class: "btn btn-info active" %>

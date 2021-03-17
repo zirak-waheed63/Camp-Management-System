@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'pages#dashboard'
+  root 'pages#introduction'
+  get 'dashboard', to: 'pages#dashboard'
 
   devise_for :users
 

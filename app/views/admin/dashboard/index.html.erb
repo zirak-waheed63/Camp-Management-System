@@ -1,18 +1,16 @@
-<% content_for :top_content do %>
-  <div class="jumbotron">
-    <div class="container">
-      <h1>Welcome!</h1>
-      <%if current_user.present? && current_user.admin? %>
-        <%= link_to 'List all Users', users_path, class: 'btn btn-default' %>
-        <br><br>
-        <%= link_to 'Invite User',new_user_invitation_path, class: 'btn btn-default' %>
-        <br><br>
-        <%= link_to 'Camp Locations',camp_locations_path, class: 'btn btn-default' %>
-        <br><br>
-        <%= link_to 'List Camps',camps_path, class: 'btn btn-default' %>
-        <br><br>
-        <%= link_to 'List Camp Applications',admin_camp_applications_path, class: 'btn btn-default' %>
-      <%end %>
-    </div>
+<div class="jumbotron">
+  <div class="container">
+    <h1>Welcome!</h1>
+    <%if current_user.present? && current_user.admin? %>
+      <%= link_to 'List all Users', users_path, class: 'btn btn-default' %>
+      <br><br>
+      <%= link_to 'Invite User',new_user_invitation_path, class: 'btn btn-default' %>
+      <br><br>
+      <%= link_to 'Camp Locations',camp_locations_path, class: 'btn btn-default' %>
+      <br><br>
+      <%= link_to 'List Camps',camps_path, class: 'btn btn-default' %>
+      <br><br>
+      <%= link_to 'List Camp Applications',admin_camp_applications_path, class: 'btn btn-default' %>
+    <%end %>
   </div>
-<% end %>
+</div>

@@ -1,14 +1,14 @@
 class User < ApplicationRecord
   paginates_per 3
 
-  validates :terms, acceptance: {message: 'not accepted: contact Admin at xyz@projectname.com' } , allow_nil: false
+  validates :terms, acceptance: {message: 'not accepted: contact Admin at xyz@projectname.com' }
   validates :first_name, :last_name, :country, :phone_number, :encrypted_password, :email, presence: true
   validates :phone_number, numericality: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: "invalid"  }, 
                     length: { minimum: 4, maximum: 254 }                                                        
   validate :password_requirements_are_met
 
-  has_many :camp_applications, dependent: :destroy
+  has_one :camp_application, dependent: :destroy
   has_one_attached :avatar
   
   devise :invitable, :database_authenticatable, :registerable, :confirmable,

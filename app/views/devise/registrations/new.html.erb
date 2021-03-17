@@ -42,7 +42,6 @@
   <div class="field">
     <%= f.label :password, 'Password*' %>
     <%=resource.errors.full_messages_for(:password).join(', ')%>
-    <em>(<%= 7 %> characters minimum)</em>
     <br />
     <%= f.password_field :password, autocomplete: "new-password", required: true %>
   </div>
@@ -59,7 +58,7 @@
     (a) institutional planning to assist with the creation (b) notification and/or delivery of other programs and services (c) statistical analysis necessary to further assist
     (d) planning of or response to a natural disaster or other event deemed to be an emergency (collectively, the "Purposes"); and (ii) being contacted by the XYZ Institutions for reasons related to the Purposes. For more information please review our Privacy Policy.
   </p>
-
+    <%= f.radio_button :terms, "false", checked: true, class: 'hidden' %>  
   <p>
     <%= f.radio_button :terms, "true" %> I agree
   </p>

@@ -1,12 +1,25 @@
 class CampApplicationsController < Wicked::WizardController
   before_action :set_progress, only: [:show]
   before_action :is_user?
-  before_action :set_application
-  before_action :active?, except: :view_application
+  before_action :set_application, except: :create
+  before_action :active?, except: [:view_application, :create]
   before_action :validate_dates, only: [:show, :update]
 
   steps :personal_information, :step_two, :step_three, :step_four, :step_five, :step_six, :step_seven,
         :step_eight, :step_nine, :step_ten
+
+  def create
+    camp = Camp.find_by(status: true)
+    if camp.nil?
+      redirect_to root_path, alert: 'No active camp available currently' 
+    elsif Date.today > camp.end_date
+      redirect_to root_path, alert: 'Camp has ended. Please participate in next camp'
+    else
+      @camp_application = CampApplication.create(user: current_user, camp: camp)
+      redirect_to dashboard_path
+    end
+    return
+  end
 
   def show
     if current_step?(:personal_information)
@@ -52,7 +65,7 @@ class CampApplicationsController < Wicked::WizardController
   end
 
   def set_application
-    @camp_application = CampApplication.find_by(user_id: current_user.id)
+    @camp_application = current_user.camp_application
     redirect_to root_path, alert: 'No application found.' if @camp_application.nil?
   end
 

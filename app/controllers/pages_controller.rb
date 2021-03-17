@@ -1,17 +1,22 @@
 class PagesController < ApplicationController
   before_action :is_user?
+
+  def introduction
+    redirect_to dashboard_path if current_user.camp_application.present?
+    @camp = Camp.find_by(status: true)
+    flash[:alert] = 'No active camp available currently' if @camp.nil?
+  end
+
   def dashboard
-    @camp_application = CampApplication.find_by(user_id: current_user.id)
-    
+    @camp_application = current_user.camp_application
     if @camp_application.nil?
-    	camp = Camp.find_by(status: true)
-    	flash[:alert] = "No active camp available currently" if camp.nil?
-      @camp_application = CampApplication.create(user: current_user, camp: camp)
+      redirect_to root_path
+      return
     end
 
-     @camp = @camp_application.camp
-     @camp_application.update_progress
-     @camp_application.update_status
-     @progress = @camp_application.progress
+    @camp = @camp_application.camp
+    @camp_application.update_progress
+    @camp_application.update_status
+    @progress = @camp_application.progress
   end
 end

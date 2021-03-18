@@ -40,7 +40,10 @@ class CampApplicationsController < Wicked::WizardController
     @camp_application.update_status
 
     if @camp_application.progress == 100
-      flash[:notice] = 'Application submitted successfully'
+      if current_step?(:step_ten)
+        flash[:notice] = 'Application submitted successfully'
+        @camp_application.update(status: 'active')
+      end
     else
       jump_to(@camp_application.status.to_sym)
     end

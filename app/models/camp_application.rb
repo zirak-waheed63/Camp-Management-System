@@ -60,10 +60,10 @@ class CampApplication < ApplicationRecord
   	elsif !step_ten.present?
   		status = 'step_ten'
   	elsif progress = 100
-  		status = 'active'
+  		status = 'step_ten'
   	else
   		status = 'personal_information'
   	end	
-  		self.update(status: status)
+  		self.update(status: status) if self.status != 'active'
   end
 end

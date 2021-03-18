@@ -24,7 +24,7 @@
         <td class="col col-sm-1"><%= application.status == 'active'? 'Completed':'In Progress ' %></td>
 
         <td><%= link_to 'Show', view_admin_camp_application_path(application.id) %></td>
-        <td><%= link_to 'Edit', admin_camp_application_path(application_id: application.id, id: 'personal_information')%></td>
+        <td><%= link_to 'Edit', edit_admin_camp_application_path(application)%></td>
         <td><%= link_to 'Destroy', admin_camp_application_path(application), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

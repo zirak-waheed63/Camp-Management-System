@@ -34,7 +34,7 @@
       <%= f.select :gender, ['Male','Female'] %>
     </div>
     <div class="actions">
-      <%= f.submit "done", data: show_confirmation(@camp_application, 'personal_information')%>
+      <%= f.submit "done"%>
     </div>
 <% end %>
 <%= link_to 'skip', next_wizard_path %>

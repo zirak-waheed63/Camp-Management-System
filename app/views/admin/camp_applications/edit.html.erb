@@ -1,0 +1,24 @@
+<h1>Edit Application</h1>
+<table class="table table-hover">
+	<tbody>
+	<tr class="row"><td><%= link_to 'Personal Information', admin_camp_application_path(application_id: @camp_application.id, id: 'personal_information'), class: "btn btn-#{get_class(@camp_application.name.present?)} btn-lg btn-block active" %></td></tr>
+
+	<tr class="row"><td><%= link_to 'Step two', admin_camp_application_path(application_id: @camp_application.id, id: 'step_two'), class: "btn btn-#{get_class(@camp_application.step_two.present?)} btn-lg btn-block active" %></td></tr>
+
+	<tr class="row"><td><%= link_to 'Step Three', admin_camp_application_path(application_id: @camp_application.id, id: 'step_three'), class: "btn btn-#{get_class(@camp_application.step_three.present?)} btn-lg btn-block active" %></td></tr>
+
+	<tr class="row"><td><%= link_to 'Step Four', admin_camp_application_path(application_id: @camp_application.id, id: 'step_four'), class: "btn btn-#{get_class(@camp_application.step_four.present?)} btn-lg btn-block active" %></td></tr>
+
+	<tr class="row"><td><%= link_to 'Step Five', admin_camp_application_path(application_id: @camp_application.id, id: 'step_five'), class: "btn btn-#{get_class(@camp_application.step_five.present?)} btn-lg btn-block active" %></td></tr>
+
+	<tr class="row"><td><%= link_to 'Step Six', admin_camp_application_path(application_id: @camp_application.id, id: 'step_six'), class: "btn btn-#{get_class(@camp_application.step_six.present?)} btn-lg btn-block active" %></td></tr>
+
+	<tr class="row"><td><%= link_to 'Step Seven', admin_camp_application_path(application_id: @camp_application.id, id: 'step_seven'), class: "btn btn-#{get_class(@camp_application.step_seven.present?)} btn-lg btn-block active" %></td></tr>
+
+	<tr class="row"><td><%= link_to 'Step Eight', admin_camp_application_path(application_id: @camp_application.id, id: 'step_eight'), class: "btn btn-#{get_class(@camp_application.step_eight.present?)} btn-lg btn-block active" %></td></tr>
+
+	<tr class="row"><td><%= link_to 'Step Nine', admin_camp_application_path(application_id: @camp_application.id, id: 'step_nine'), class: "btn btn-#{get_class(@camp_application.step_nine.present?)} btn-lg btn-block active" %></td></tr>
+
+	<tr class="row"><td><%= link_to 'Step Ten', admin_camp_application_path(application_id: @camp_application.id, id: 'step_ten'), class: "btn btn-#{get_class(@camp_application.step_ten.present?)} btn-lg btn-block active" %></td></tr>
+	</tbody>
+</table>

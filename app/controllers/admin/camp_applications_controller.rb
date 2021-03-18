@@ -26,13 +26,17 @@ class Admin::CampApplicationsController < Wicked::WizardController
 		redirect_to admin_camp_applications_path, alert: 'Application is still in progress' unless @camp_application.status == 'active'
 	end
 
+  def edit
+    
+  end
+
 	def destroy
 		@camp_application.destroy
 		redirect_to admin_camp_applications_path, notice: 'Application has deleted successfully'
 	end
 
 	def finish_wizard_path
-    admin_camp_applications_path
+    edit_admin_camp_application_path
   end
 
 	private

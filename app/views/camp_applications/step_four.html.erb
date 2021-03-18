@@ -1,9 +1,5 @@
 <h2>Step Four</h2>
-<div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="<%=@progress %>"
-  aria-valuemin="0" aria-valuemax="100" style="width: <%=@progress %>%">
-  </div>
-</div>
+<%= render partial: 'shared/progressbar', locals: {current_step: 'step_four'}%>
 <%= form_for @camp_application, url: wizard_path, method: :put do |f| %>
   <div class="field">
       <%= f.label :step_four %><br />

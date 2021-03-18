@@ -4,11 +4,8 @@
       <li><%= error %></li>
     <% end %>
   </ul>
-<div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="<%=@progress %>"
-  aria-valuemin="0" aria-valuemax="100" style="width: <%=@progress %>%">
-  </div>
-</div>
+<%= render partial: 'progressbar', locals: {current_step: 'personal_information'}%>
+
 <%= form_for @camp_application, url: wizard_path, method: :put do |f| %>
     <div>
       <%if @camp_application.image.attached? %>

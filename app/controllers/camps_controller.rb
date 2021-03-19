@@ -1,7 +1,6 @@
 class CampsController < ApplicationController
   before_action :set_camp, only: %i[ show edit update destroy toggle_status introduction]
   before_action :is_admin?, except: [:introduction]
-  before_action :is_user?, only: [:introduction]
   # GET /camps or /camps.json
   def index
     @camps = Camp.all

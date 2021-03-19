@@ -1,7 +1,2 @@
-module Admin
-  class DashboardController < ApplicationController
-    before_action :is_admin?
-    
-    def index; end
-  end
+class Admin::DashboardController < Admin::BaseController
 end

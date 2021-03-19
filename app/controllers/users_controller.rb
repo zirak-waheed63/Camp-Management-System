@@ -60,7 +60,7 @@ class UsersController < ApplicationController
   end
 
   def check_logged_in
-    redirect_to user_session_path if current_user.nil?
+    redirect_to user_session_path if current_user.blank?
   end
 
   def sortable_columns

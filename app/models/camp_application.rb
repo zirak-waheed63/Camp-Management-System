@@ -59,11 +59,20 @@ class CampApplication < ApplicationRecord
   		status = 'step_nine'
   	elsif !step_ten.present?
   		status = 'step_ten'
-  	elsif progress = 100
+  	elsif progress == 100
   		status = 'step_ten'
   	else
   		status = 'personal_information'
   	end	
   		self.update(status: status) if self.status != 'active'
   end
+
+  def initialize_from_user(user)
+    self.name = "#{user.first_name} #{user.middle_name} #{user.last_name}" if name.blank?
+    self.email = user.email if email.blank?
+    if image.attached?.blank? && user.avatar.attached?
+      image.attach(user.avatar.blob)
+    end
+  end
+
 end

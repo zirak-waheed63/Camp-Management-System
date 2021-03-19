@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'pages#introduction'
   get 'dashboard', to: 'pages#dashboard'
 
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'users/registrations', invitations: 'users/invitations'}
 
   resources :camps do
     member do

@@ -1,7 +1,6 @@
-class Admin::CampApplicationsController < Wicked::WizardController
+class Admin::CampApplicationsController < Admin::BaseController
+  include Wicked::Wizard
 	before_action :set_application, except: :index
-	before_action :set_progress, only: [:show]
-	before_action :is_admin?
   
   steps :personal_information, :step_two, :step_three, :step_four, :step_five, :step_six, :step_seven,
         :step_eight, :step_nine, :step_ten
@@ -44,14 +43,6 @@ class Admin::CampApplicationsController < Wicked::WizardController
 	def set_application
 		@camp_application = CampApplication.find(params[:application_id])
 	end
-
-	def set_progress
-    @progress = if wizard_steps.any? && wizard_steps.index(step).present?
-                  ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
-                else
-                  0
-                end
-  end
 
   def application_params
     params.require(:camp_application).permit(:image, :name, :email, :gender, :step_two, :step_three, :step_four,

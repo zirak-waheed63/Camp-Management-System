@@ -1,5 +1,4 @@
 class CampApplicationsController < Wicked::WizardController
-  before_action :set_progress, only: [:show]
   before_action :is_user?
   before_action :set_application, except: :create
   before_action :active?, except: [:view_application, :create]
@@ -10,9 +9,9 @@ class CampApplicationsController < Wicked::WizardController
 
   def create
     camp = Camp.find_by(status: true)
-    if camp.nil?
+    if camp.blank?
       redirect_to root_path, alert: 'No active camp available currently' 
-    elsif Date.today > camp.end_date
+    elsif camp.is_finished?
       redirect_to root_path, alert: 'Camp has ended. Please participate in next camp'
     else
       @camp_application = CampApplication.create(user: current_user, camp: camp)
@@ -22,14 +21,9 @@ class CampApplicationsController < Wicked::WizardController
   end
 
   def show
+
     if current_step?(:personal_information)
-      if @camp_application.name.nil?
-        @camp_application.name = "#{current_user.first_name} #{current_user.middle_name} #{current_user.last_name}"
-      end
-      @camp_application.email = current_user.email if @camp_application.email.nil?
-      if !@camp_application.image.attached? && current_user.avatar.attached?
-        @camp_application.image.attach(current_user.avatar.blob)
-      end
+      @camp_application.initialize_from_user(current_user)
     end
     render_wizard
   end
@@ -59,21 +53,13 @@ class CampApplicationsController < Wicked::WizardController
 
   private
 
-  def set_progress
-    @progress = if wizard_steps.any? && wizard_steps.index(step).present?
-                  ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
-                else
-                  0
-                end
-  end
-
   def set_application
     @camp_application = current_user.camp_application
-    redirect_to root_path, alert: 'No application found.' if @camp_application.nil?
+    redirect_to root_path, alert: 'No application found.' if @camp_application.blank?
   end
 
   def validate_dates
-    if Date.today > @camp_application.camp.end_date
+    if @camp_application.camp.is_finished?
       flash[:alert] = 'Camp has ended. Please participate in next camp'
       redirect_to root_path
     end

@@ -1,6 +1,6 @@
 <div id="msform">
   <ul id="progressbar">
-    <li class= "<%='active' if @camp_application.name.present?%> <%= 'current' if current_step == 'personal_information'%>" ><%= link_to 'Personal Information', admin_camp_application_path(application_id: @camp_application.id, id: 'personal_information') %></li>
+    <li class= "<%='active' if @camp_application.gender.present?%> <%= 'current' if current_step == 'personal_information'%>" ><%= link_to 'Personal Information', admin_camp_application_path(application_id: @camp_application.id, id: 'personal_information') %></li>
 
     <li class= "<%='active' if @camp_application.step_two.present?%> <%= 'current' if current_step == 'step_two'%>" ><%= link_to 'Step two', admin_camp_application_path(application_id: @camp_application.id, id: 'step_two')%></li>
 

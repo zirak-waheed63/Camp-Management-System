@@ -1,6 +1,5 @@
-class CampsController < ApplicationController
-  before_action :set_camp, only: %i[ show edit update destroy toggle_status introduction]
-  before_action :is_admin?, except: [:introduction]
+class CampsController < Admin::BaseController
+  before_action :set_camp, only: %i[ show edit update destroy toggle_status]
   # GET /camps or /camps.json
   def index
     @camps = Camp.all
@@ -71,4 +70,4 @@ class CampsController < ApplicationController
     def camp_params
       params.require(:camp).permit(:name, :start_date, :end_date, :status, camp_location_ids: [])
     end
-end
+  end

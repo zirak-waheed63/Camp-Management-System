@@ -1,6 +1,5 @@
-class CampLocationsController < ApplicationController
+class CampLocationsController < Admin::BaseController
   before_action :set_camp_location, only: %i[ show edit update destroy ]
-  before_action :is_admin?
 
   def index
     @camp_locations = CampLocation.all

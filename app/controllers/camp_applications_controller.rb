@@ -1,5 +1,5 @@
 class CampApplicationsController < Wicked::WizardController
-  before_action :is_user?
+  before_action :not_admin?
   before_action :set_application, except: :create
   before_action :active?, except: [:view_application, :create]
   before_action :validate_dates, only: [:show, :update]
@@ -73,5 +73,9 @@ class CampApplicationsController < Wicked::WizardController
 
   def active?
     redirect_to root_path, alert: 'Application has been submitted. You cannot edit now' if @camp_application.status == 'active'
+  end
+
+  def not_admin?
+    redirect_to admin_camp_applications_path if  current_user.admin?
   end
 end

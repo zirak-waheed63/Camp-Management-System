@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :is_user?
+  before_action :not_admin?
 
   def introduction
     redirect_to dashboard_path if current_user.camp_application.present?
@@ -18,5 +18,11 @@ class PagesController < ApplicationController
     @camp_application.update_progress
     @camp_application.update_status
     @progress = @camp_application.progress
+  end
+
+  private
+
+  def not_admin?
+    redirect_to admin_root_path if current_user.admin?
   end
 end

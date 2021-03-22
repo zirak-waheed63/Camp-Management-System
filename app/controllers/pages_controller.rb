@@ -15,8 +15,6 @@ class PagesController < ApplicationController
     end
 
     @camp = @camp_application.camp
-    @camp_application.update_progress
-    @camp_application.update_status
     @progress = @camp_application.progress
   end
 

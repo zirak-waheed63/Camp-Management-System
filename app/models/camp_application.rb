@@ -2,69 +2,29 @@ class CampApplication < ApplicationRecord
   belongs_to :camp
   belongs_to :user
   has_one_attached :image
-
-  def update_progress
-  	progress = 0
-  	if name.present?
-  		progress +=10
-  	end
-  	if step_two.present?
-  		progress += 10
-  	end
-  	if step_three.present?
-  		progress += 10
-  	end
-  	if step_four.present?
-  		progress += 10
-  	end
-  	if step_five.present?
-  		progress += 10
-  	end
-  	if step_six.present?
-  		progress += 10
-  	end
-  	if step_seven.present?
-  		progress += 10
-  	end
-  	if step_eight.present?
-  		progress += 10
-  	end
-  	if step_nine.present?
-  		progress += 10
-  	end
-  	if step_ten.present?
-  		progress += 10
-  	end	
-  	self.update(progress: progress)	
+  after_initialize :initialize_steps_hash
+  
+  STEPS = %w[personal_information step_two step_three step_four step_five step_six step_seven step_eight step_nine step_ten]
+  def initialize_steps_hash
+    self.steps = STEPS.map { |key| { key => false } }.reduce(&:merge) if steps.blank?
   end
 
-  def update_status
-  	if !name.present?
-  		status = 'personal_information'
-  	elsif !step_two.present?
-  		status = 'step_two'
-  	elsif !step_three.present?
-  		status = 'step_three'
-  	elsif !step_four.present?
-  		status = 'step_four'
-  	elsif !step_five.present?
-  		status = 'step_five'
-  	elsif !step_six.present?
-  		status = 'step_six'
-  	elsif !step_seven.present?
-  		status = 'step_seven'
-  	elsif !step_eight.present?
-  		status = 'step_eight'
-  	elsif !step_nine.present?
-  		status = 'step_nine'
-  	elsif !step_ten.present?
-  		status = 'step_ten'
-  	elsif progress == 100
-  		status = 'step_ten'
-  	else
-  		status = 'personal_information'
-  	end	
-  		self.update(status: status) if self.status != 'active'
+  def complete_step(name)
+    current_steps = steps
+    current_steps[name] = true
+    update(steps: current_steps)
+  end
+
+  def status
+    status = steps.select { |k, v| !v}.keys.first
+    status = 'active' if status.blank?
+    return status
+  end
+
+  def progress
+    completed = steps.select { |k, v| v }.keys.size
+    total = steps.keys.size
+    return completed*100/total
   end
 
   def initialize_from_user(user)

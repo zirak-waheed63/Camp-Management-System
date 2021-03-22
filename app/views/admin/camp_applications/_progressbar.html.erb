@@ -1,23 +1,23 @@
 <div id="msform">
   <ul id="progressbar">
-    <li class= "<%='active' if @camp_application.gender.present?%> <%= 'current' if current_step == 'personal_information'%>" ><%= link_to 'Personal Information', admin_camp_application_path(application_id: @camp_application.id, id: 'personal_information') %></li>
+    <li class= "<%='active' if @camp_application.steps['personal_information'].present?%> <%= 'current' if current_step == 'personal_information'%>" ><%= link_to 'Personal Information', admin_camp_application_path(application_id: @camp_application.id, id: 'personal_information') %></li>
 
-    <li class= "<%='active' if @camp_application.step_two.present?%> <%= 'current' if current_step == 'step_two'%>" ><%= link_to 'Step two', admin_camp_application_path(application_id: @camp_application.id, id: 'step_two')%></li>
+    <li class= "<%='active' if @camp_application.steps['step_two'].present?%> <%= 'current' if current_step == 'step_two'%>" ><%= link_to 'Step two', admin_camp_application_path(application_id: @camp_application.id, id: 'step_two')%></li>
 
-    <li class= "<%='active' if @camp_application.step_three.present?%> <%= 'current' if current_step == 'step_three'%>"><%= link_to 'Step Three', admin_camp_application_path(application_id: @camp_application.id, id: 'step_three')%></li>
+    <li class= "<%='active' if @camp_application.steps['step_three'].present?%> <%= 'current' if current_step == 'step_three'%>"><%= link_to 'Step Three', admin_camp_application_path(application_id: @camp_application.id, id: 'step_three')%></li>
 
-    <li class= "<%='active' if @camp_application.step_four.present?%> <%= 'current' if current_step == 'step_four'%>" ><%= link_to 'Step Four', admin_camp_application_path(application_id: @camp_application.id, id: 'step_four')%></li>
+    <li class= "<%='active' if @camp_application.steps['step_four'].present?%> <%= 'current' if current_step == 'step_four'%>" ><%= link_to 'Step Four', admin_camp_application_path(application_id: @camp_application.id, id: 'step_four')%></li>
 
-    <li class= "<%='active' if @camp_application.step_five.present?%> <%= 'current' if current_step == 'step_five'%>"><%= link_to 'Step Five', admin_camp_application_path(application_id: @camp_application.id, id: 'step_five') %></li>
+    <li class= "<%='active' if @camp_application.steps['step_five'].present?%> <%= 'current' if current_step == 'step_five'%>"><%= link_to 'Step Five', admin_camp_application_path(application_id: @camp_application.id, id: 'step_five') %></li>
 
-    <li class= "<%='active' if @camp_application.step_six.present?%> <%= 'current' if current_step == 'step_six'%>"><%= link_to 'Step Six', admin_camp_application_path(application_id: @camp_application.id, id: 'step_six')%></li>
+    <li class= "<%='active' if @camp_application.steps['step_six'].present?%> <%= 'current' if current_step == 'step_six'%>"><%= link_to 'Step Six', admin_camp_application_path(application_id: @camp_application.id, id: 'step_six')%></li>
 
-    <li class= "<%='active' if @camp_application.step_seven.present?%> <%= 'current' if current_step == 'step_seven'%>"><%= link_to 'Step Seven', admin_camp_application_path(application_id: @camp_application.id, id: 'step_seven')%></li>
+    <li class= "<%='active' if @camp_application.steps['step_seven'].present?%> <%= 'current' if current_step == 'step_seven'%>"><%= link_to 'Step Seven', admin_camp_application_path(application_id: @camp_application.id, id: 'step_seven')%></li>
 
-    <li class= "<%='active' if @camp_application.step_eight.present?%> <%= 'current' if current_step == 'step_eight'%>"><%= link_to 'Step Eight', admin_camp_application_path(application_id: @camp_application.id, id: 'step_eight')%></li>
+    <li class= "<%='active' if @camp_application.steps['step_eight'].present?%> <%= 'current' if current_step == 'step_eight'%>"><%= link_to 'Step Eight', admin_camp_application_path(application_id: @camp_application.id, id: 'step_eight')%></li>
 
-    <li  class= "<%='active' if @camp_application.step_nine.present?%> <%= 'current' if current_step == 'step_nine'%>"><%= link_to 'Step Nine', admin_camp_application_path(application_id: @camp_application.id, id: 'step_nine')%></li>
+    <li  class= "<%='active' if @camp_application.steps['step_nine'].present?%> <%= 'current' if current_step == 'step_nine'%>"><%= link_to 'Step Nine', admin_camp_application_path(application_id: @camp_application.id, id: 'step_nine')%></li>
 
-    <li class= "<%='active' if @camp_application.step_ten.present?%> <%= 'current' if current_step == 'step_ten'%>"><%= link_to 'Step Ten', admin_camp_application_path(application_id: @camp_application.id, id: 'step_ten')%></li>
+    <li class= "<%='active' if @camp_application.steps['step_ten'].present?%> <%= 'current' if current_step == 'step_ten'%>"><%= link_to 'Step Ten', admin_camp_application_path(application_id: @camp_application.id, id: 'step_ten')%></li>
   </ul>
 </div>

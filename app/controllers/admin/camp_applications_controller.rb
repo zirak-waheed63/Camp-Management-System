@@ -10,10 +10,10 @@ class Admin::CampApplicationsController < Admin::BaseController
   end
 
   def update
-    @camp_application.update_attributes(application_params)
-    @camp_application.update_progress
-    @camp_application.update_status
-
+  	if @camp_application.update(application_params)
+      @camp_application.complete_step(step)
+    end
+    
     render_wizard @camp_application
   end
 

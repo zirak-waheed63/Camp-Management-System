@@ -29,17 +29,16 @@ class CampApplicationsController < Wicked::WizardController
   end
 
   def update
-    @camp_application.update_attributes(application_params)
-    @camp_application.update_progress
-    @camp_application.update_status
+    if @camp_application.update(application_params)
+      @camp_application.complete_step(step)
+    end
 
-    if @camp_application.progress == 100
-      if current_step?(:step_ten)
+    if current_step?(:step_ten)
+      if @camp_application.progress == 100
         flash[:notice] = 'Application submitted successfully'
-        @camp_application.update(status: 'active')
+      else
+        jump_to(@camp_application.status.to_sym)
       end
-    else
-      jump_to(@camp_application.status.to_sym)
     end
 
     render_wizard @camp_application

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_133429) do
+ActiveRecord::Schema.define(version: 2021_03_22_054743) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_03_10_133429) do
     t.string "step_ten"
     t.string "status", default: "personal_information"
     t.integer "progress", default: 0
+    t.json "steps", default: {}
     t.index ["camp_id"], name: "index_camp_applications_on_camp_id"
     t.index ["user_id"], name: "index_camp_applications_on_user_id"
   end

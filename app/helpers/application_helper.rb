@@ -16,8 +16,8 @@ module ApplicationHelper
     country.translations[I18n.locale.to_s] || country.name
   end
   
-  def get_class(attribute)
-    if attribute.present?
+  def get_class(application, attribute)
+    if application.steps[attribute].present?
       'success'
     else
       'default'

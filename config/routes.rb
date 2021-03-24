@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :products, only: %i[show create index]
+    end
+  end
 
   root 'pages#introduction'
   get 'dashboard', to: 'pages#dashboard'
 
-  devise_for :users, controllers: {registrations: 'users/registrations', invitations: 'users/invitations'}
+  devise_for :users, controllers: { registrations: 'users/registrations', invitations: 'users/invitations' }
 
   resources :camps do
     member do
@@ -11,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, except: [:new, :create] do
+  resources :users, except: %i[new create] do
     get 'search', to: 'users#index', on: :collection
   end
 
@@ -23,10 +28,9 @@ Rails.application.routes.draw do
 
   namespace 'admin' do
     root 'dashboard#index'
-    
-    resources :camp_applications, param: :application_id do
-    	get 'view', on: :member
-		end
-  end
 
+    resources :camp_applications, param: :application_id do
+      get 'view', on: :member
+    end
+  end
 end

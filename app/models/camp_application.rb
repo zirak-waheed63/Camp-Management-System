@@ -3,6 +3,7 @@ class CampApplication < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   after_initialize :initialize_steps_hash
+  validates :name, length: {minimum: 5}, on: :update, allow_nil: true
   
   STEPS = %w[personal_information step_two step_three step_four step_five step_six step_seven step_eight step_nine step_ten]
   def initialize_steps_hash

@@ -17,7 +17,6 @@ class CampApplicationsController < Wicked::WizardController
       @camp_application = CampApplication.create(user: current_user, camp: camp)
       redirect_to dashboard_path
     end
-    return
   end
 
   def show

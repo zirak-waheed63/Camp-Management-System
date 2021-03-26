@@ -6,6 +6,37 @@
     <%= f.text_field :step_two, required: true %>
   </div>
 
+  <label>Overseas: </label>
+  <input type="checkbox" id="overseas">
+  
+  <div id="overseas-fields" class="hidden">
+    <div class="field">
+      <label>Country: </label><br>
+      <%= f.text_field :step_three%>
+    </div>
+
+    <div class="field">
+      <label>City: </label><br />
+      <%= f.text_field :step_four%>
+    </div>
+  </div>
+
+  <br>
+  <label>Government Officer:</label>
+  <input type="checkbox" id="officer">
+  
+  <div id="officers-fields" class="hidden">
+    <div class="field">
+      <label>Designation: </label><br />
+      <%= f.text_field :step_five %>
+    </div>
+
+    <div class="field">
+      <label>Rank: </label><br />
+      <%= f.text_field :step_six %>
+    </div>
+  </div>
+
   <div class="actions">
     <%= f.submit "done" %>
   </div>

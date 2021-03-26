@@ -20,7 +20,9 @@
         <td class="col col-sm-2"><%= camp.end_date %></td>
         <td><%= link_to 'Show', camp %></td>
         <td><%= link_to 'Edit', edit_camp_path(camp) %></td>
-        <td><%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy',"#exampleModal#{camp.id}", 'data-toggle' => 'modal' %></td>
+        <%= render 'delete_modal', camp: camp %>
+
         <td>
           <% if camp.status? %>
             <%= link_to :Active, toggle_status_camp_path(camp), method: :patch, class: 'btn btn-sm btn-success active',

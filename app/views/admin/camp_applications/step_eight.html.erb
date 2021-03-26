@@ -2,12 +2,12 @@
 <%= render partial: 'progressbar', locals: { current_step: 'step_eight' } %>
 <%= form_for @camp_application, url: wizard_path, method: :put do |f| %>
   <div class="field">
-      <%= f.label :step_eight %><br />
-      <%= f.text_field :step_eight %>
-    </div>
+    <%= f.label :step_eight %><br />
+    <%= f.text_field :step_eight %>
+  </div>
 
-    <div class="actions">
-      <%= f.submit "done" %>
-    </div>
+  <div class="actions">
+    <%= f.submit "done" %>
+  </div>
 <% end %>
 <%= link_to 'back', previous_wizard_path %> | <%= link_to 'skip', next_wizard_path %>

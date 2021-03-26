@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       get 'search', to: 'users#index', on: :collection
     end
     resources :camp_applications, param: :application_id do
-    	get 'view', on: :member
-		end
+      get 'view', on: :member
+    end
   end
 end

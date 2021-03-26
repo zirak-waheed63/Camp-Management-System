@@ -5,7 +5,7 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
   def invite_params
-	  devise_parameter_sanitizer.permit(:user, keys: %i[first_name middle_name last_name phone_number country email])
-	  devise_parameter_sanitizer.sanitize(:user)
-	end
+    devise_parameter_sanitizer.permit(:user, keys: %i[first_name middle_name last_name phone_number country email])
+    devise_parameter_sanitizer.sanitize(:user)
+  end
 end

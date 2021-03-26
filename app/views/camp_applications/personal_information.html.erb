@@ -4,16 +4,16 @@
       <li><%= error %></li>
     <% end %>
   </ul>
-<%= render partial: 'shared/progressbar', locals: {current_step: 'personal_information'}%>
+<%= render partial: 'shared/progressbar', locals: { current_step: 'personal_information' } %>
 <%= form_for @camp_application, url: wizard_path, method: :put do |f| %>
     <div>
-      <%if @camp_application.image.attached? %>
-        <img src="<%=url_for(@camp_application.image)%>" class="img-circle img-responsive" style="height: 200px; width: 200px">
-      <%end %>
+      <% if @camp_application.image.attached? %>
+        <img src="<%= url_for(@camp_application.image) %>" class="img-circle img-responsive" style="height: 200px; width: 200px">
+      <% end %>
     </div>
     <div class="field">
       <%= f.label :Image %><br />
-      <%= f.file_field :image%>
+      <%= f.file_field :image %>
     </div>
     <div class="field">
       <%= f.label :name %><br />
@@ -29,8 +29,9 @@
       <%= f.label :gender %><br />
       <%= f.select :gender, ['Male','Female'] %>
     </div>
+    
     <div class="actions">
-      <%= f.submit "done"%>
+      <%= f.submit "done" %>
     </div>
 <% end %>
 <%= link_to 'skip', next_wizard_path %>

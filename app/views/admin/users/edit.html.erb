@@ -4,11 +4,11 @@
       <li><%= error %></li>
     <% end %>
   </ul>
-<%= form_for @user do |f| %>
+<%= form_for @user, url: admin_user_path, method: :put do |f| %>
     <div>
-      <%if @user.avatar.attached? %>
-        <img src="<%=url_for(@user.avatar)%>" class="img-circle img-responsive" style="height: 200px; width: 200px">
-      <%end %>
+      <% if @user.avatar.attached? %>
+        <img src="<%= url_for(@user.avatar) %>" class="img-circle img-responsive" style="height: 200px; width: 200px">
+      <% end %>
     </div>
 
     <div class="field">
@@ -45,21 +45,6 @@
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
     </div>
-
-    <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-      <% if @minimum_password_length %>
-        <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
-
 
     <div class="actions">
       <%= f.submit "Update" %>

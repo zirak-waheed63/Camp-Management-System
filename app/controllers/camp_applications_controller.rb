@@ -1,5 +1,5 @@
-class CampApplicationsController < Wicked::WizardController
-  before_action :not_admin?
+class CampApplicationsController < BaseController
+  include Wicked::Wizard
   before_action :set_application, except: :create
   before_action :active?, except: [:view_application, :create]
   before_action :validate_dates, only: [:show, :update]
@@ -14,13 +14,13 @@ class CampApplicationsController < Wicked::WizardController
     elsif camp.is_finished?
       redirect_to root_path, alert: 'Camp has ended. Please participate in next camp'
     else
-      @camp_application = CampApplication.create(user: current_user, camp: camp)
+      @camp_application = CampApplication.new(user: current_user, camp: camp)
+      @camp_application.save
       redirect_to dashboard_path
     end
   end
 
   def show
-
     if current_step?(:personal_information)
       @camp_application.initialize_from_user(current_user)
     end
@@ -71,9 +71,5 @@ class CampApplicationsController < Wicked::WizardController
 
   def active?
     redirect_to root_path, alert: 'Application has been submitted. You cannot edit now' if @camp_application.status == 'active'
-  end
-
-  def not_admin?
-    redirect_to admin_camp_applications_path if  current_user.admin?
   end
 end

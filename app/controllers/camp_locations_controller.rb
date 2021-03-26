@@ -1,19 +1,17 @@
 class CampLocationsController < Admin::BaseController
-  before_action :set_camp_location, only: %i[ show edit update destroy ]
+  before_action :set_camp_location, only: %i[show edit update destroy]
 
   def index
     @camp_locations = CampLocation.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @camp_location = CampLocation.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @camp_location = CampLocation.new(camp_location_params)
@@ -50,6 +48,7 @@ class CampLocationsController < Admin::BaseController
   end
 
   private
+  
     def set_camp_location
       @camp_location = CampLocation.find(params[:id])
     end

@@ -1,5 +1,4 @@
-class PagesController < ApplicationController
-  before_action :not_admin?
+class PagesController < BaseController
 
   def introduction
     redirect_to dashboard_path if current_user.camp_application.present?
@@ -9,18 +8,8 @@ class PagesController < ApplicationController
 
   def dashboard
     @camp_application = current_user.camp_application
-    if @camp_application.blank?
-      redirect_to root_path
-      return
-    end
-
+    return redirect_to root_path if @camp_application.blank?
     @camp = @camp_application.camp
     @progress = @camp_application.progress
-  end
-
-  private
-
-  def not_admin?
-    redirect_to admin_root_path if current_user.admin?
   end
 end

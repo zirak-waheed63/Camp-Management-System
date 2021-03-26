@@ -22,13 +22,13 @@
         <td><%= link_to 'Edit', edit_camp_path(camp) %></td>
         <td><%= link_to 'Destroy', camp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td>
-          <%if camp.status? %>
-            <%=link_to :Active, toggle_status_camp_path(camp), method: :patch, class: 'btn btn-sm btn-success active',
-                       data: {confirm: "are you sure to deactivate camp?"}%>
-          <%else %>
-            <%=link_to :Inactive, toggle_status_camp_path(camp), method: :patch, class: 'btn btn-sm btn-danger active',
-                       data: {confirm: 'are you sure to activate camp?'}%>
-          <%end %>
+          <% if camp.status? %>
+            <%= link_to :Active, toggle_status_camp_path(camp), method: :patch, class: 'btn btn-sm btn-success active',
+                        data: { confirm: "are you sure to deactivate camp?" } %>
+          <% else %>
+            <%= link_to :Inactive, toggle_status_camp_path(camp), method: :patch, class: 'btn btn-sm btn-danger active',
+                        data: { confirm: 'are you sure to activate camp?' } %>
+          <% end %>
         </td>
       </tr>
     <% end %>

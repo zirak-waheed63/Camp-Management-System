@@ -1,13 +1,13 @@
 <h2>Step Five</h2>
-<%= render partial: 'progressbar', locals: {current_step: 'step_five'}%>
+<%= render partial: 'progressbar', locals: { current_step: 'step_five' } %>
 <%= form_for @camp_application, url: wizard_path, method: :put do |f| %>
   <div class="field">
-      <%= f.label :step_five %><br />
-      <%= f.text_field :step_five%>
-    </div>
+    <%= f.label :step_five %><br />
+    <%= f.text_field :step_five %>
+  </div>
 
-    <div class="actions">
-      <%= f.submit "done"%>
-    </div>
-<%end %>
+  <div class="actions">
+    <%= f.submit "done" %>
+  </div>
+<% end %>
 <%= link_to 'back', previous_wizard_path %> | <%= link_to 'skip', next_wizard_path %>

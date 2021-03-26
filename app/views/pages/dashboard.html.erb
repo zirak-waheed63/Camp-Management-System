@@ -1,50 +1,34 @@
-<h2>You have completed <%=@progress%>% of your application</h2>
-<%if @camp.present?%>
-	<p>Welcome and thank you for applying to be a participant at CONNECT . CONNECT is an international programme for
-	  students ages 14 to 17 from around the world which takes place in partnership.<p>
+<h2>You have completed <%= @progress %>% of your application</h2>
 
-	<p>The purpose of this application is for the CONNECT Placement Team to get to know you and learn about your interests,
-	  passions, and motivations for registering. Before registering, we encourage you to visit our website and learn more
-	  about our offerings and the registration process.</p>
+<% if @camp.present? %>
+  <p>Welcome and thank you for applying to be a participant at CONNECT . CONNECT is an international programme for
+    students ages 14 to 17 from around the world which takes place in partnership.<p>
 
-	<p>This registration form is for both CONNECT camps that will take place during:</p>
-	<ul>
+  <p>The purpose of this application is for the CONNECT Placement Team to get to know you and learn about your interests,
+    passions, and motivations for registering. Before registering, we encourage you to visit our website and learn more
+    about our offerings and the registration process.</p>
 
-	  <li><strong><%= "#{@camp.name} : #{@camp.start_date} to #{@camp.end_date}"%></strong></li>
-	</ul>
-	If you have any questions during the application process, please feel free to email  at info@projectname.com.
+  <p>This registration form is for both CONNECT camps that will take place during:</p>
+  
+  <ul>
+    <li><strong><%= "#{ @camp.name } : #{ @camp.start_date } to #{ @camp.end_date }" %></strong></li>
+  </ul>
+  
+  If you have any questions during the application process, please feel free to email  at info@projectname.com.
 
-	<p>I AKNOWLEDGE AND AGREE THAT ANY INFORMATION PROVIDED IN THIS APPLICATION WILL BE COLLECTED AND PROCESSED IN
-	  ACCORDANCE WITH THE <a href="https://www.google.com">Privacy Policy</a>.</p>
-  	<p>
+  <p>I AKNOWLEDGE AND AGREE THAT ANY INFORMATION PROVIDED IN THIS APPLICATION WILL BE COLLECTED AND PROCESSED IN
+    ACCORDANCE WITH THE <a href="https://www.google.com">Privacy Policy</a>.</p>
 
- 	<%if @camp_application.status == 'active'%>
-		<%= link_to 'Show', view_application_path, class: "btn btn-info active" %>
- 	<%else%>
- 		<%= link_to 'Continue to complete application', camp_application_path(@camp_application.status.to_sym), class: "btn btn-info active" %>
-	</p>
-		<table class="table table-hover">
-			<tbody>
-			<tr class="row"><td><%= link_to 'Personal Information', camp_application_path(:personal_information), class: "btn btn-#{get_class(@camp_application, 'personal_information')} btn-lg btn-block active" %></td></tr>
-
-			<tr class="row"><td><%= link_to 'Step two', camp_application_path(:step_two), class: "btn btn-#{get_class(@camp_application, 'step_two')} btn-lg btn-block active" %></td></tr>
-
-			<tr class="row"><td><%= link_to 'Step Three', camp_application_path(:step_three), class: "btn btn-#{get_class(@camp_application, 'step_three')} btn-lg btn-block active" %></td></tr>
-
-			<tr class="row"><td><%= link_to 'Step Four', camp_application_path(:step_four), class: "btn btn-#{get_class(@camp_application, 'step_four')} btn-lg btn-block active" %></td></tr>
-
-			<tr class="row"><td><%= link_to 'Step Five', camp_application_path(:step_five), class: "btn btn-#{get_class(@camp_application, 'step_five')} btn-lg btn-block active" %></td></tr>
-
-			<tr class="row"><td><%= link_to 'Step Six', camp_application_path(:step_six), class: "btn btn-#{get_class(@camp_application, 'step_six')} btn-lg btn-block active" %></td></tr>
-
-			<tr class="row"><td><%= link_to 'Step Seven', camp_application_path(:step_seven), class: "btn btn-#{get_class(@camp_application, 'step_seven')} btn-lg btn-block active" %></td></tr>
-
-			<tr class="row"><td><%= link_to 'Step Eight', camp_application_path(:step_eight), class: "btn btn-#{get_class(@camp_application, 'step_eight')} btn-lg btn-block active" %></td></tr>
-
-			<tr class="row"><td><%= link_to 'Step Nine', camp_application_path(:step_nine), class: "btn btn-#{get_class(@camp_application, 'step_nine')} btn-lg btn-block active" %></td></tr>
-
-			<tr class="row"><td><%= link_to 'Step Ten', camp_application_path(:step_ten), class: "btn btn-#{get_class(@camp_application, 'step_ten')} btn-lg btn-block active" %></td></tr>
-			</tbody>
-		</table>
-	<%end%>
-<%end%>
+    <% if @camp_application.status == 'active' %>
+      <%= link_to 'Show', view_application_path, class: "btn btn-info active mb-4" %>
+    <% else %>
+      <%= link_to 'Continue to complete application', camp_application_path(@camp_application.status.to_sym), class: "btn btn-info active mb-4" %>
+    <table class="table table-hover">
+      <tbody>
+        <% @camp_application.steps.keys.each do |key| %>
+          <tr class="row"><td><%= link_to key.humanize, camp_application_path(key), class: "btn btn-#{ get_class(@camp_application, key) } btn-lg btn-block active" %></td></tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>

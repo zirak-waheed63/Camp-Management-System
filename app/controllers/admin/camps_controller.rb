@@ -1,5 +1,5 @@
-class CampsController < Admin::BaseController
-  before_action :set_camp, only: %i[show edit update destroy toggle_status]
+class Admin::CampsController < BaseController
+  before_action :set_camp, only: %i[show edit update destroy toggle_status introduction]
 
   def index
     @camps = Camp.all
@@ -53,7 +53,7 @@ class CampsController < Admin::BaseController
   end
 
   private
-  
+
     def set_camp
       @camp = Camp.find(params[:id])
     end
@@ -61,4 +61,4 @@ class CampsController < Admin::BaseController
     def camp_params
       params.require(:camp).permit(:name, :start_date, :end_date, :status, camp_location_ids: [])
     end
-  end
+end

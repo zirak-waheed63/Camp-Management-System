@@ -1,23 +1,7 @@
 <div id="msform">
   <ul id="progressbar">
-    <li class= "<%='active' if @camp_application.steps['personal_information'].present?%> <%= 'current' if current_step == 'personal_information'%>" ><%= link_to 'Personal Information', camp_application_path(:personal_information) %></li>
-
-    <li class= "<%='active' if @camp_application.steps['step_two'].present?%> <%= 'current' if current_step == 'step_two'%>" ><%= link_to 'Step two', camp_application_path(:step_two)%></li>
-
-    <li class= "<%='active' if @camp_application.steps['step_three'].present?%> <%= 'current' if current_step == 'step_three'%>"><%= link_to 'Step Three', camp_application_path(:step_three)%></li>
-
-    <li class= "<%='active' if @camp_application.steps['step_four'].present?%> <%= 'current' if current_step == 'step_four'%>" ><%= link_to 'Step Four', camp_application_path(:step_four)%></li>
-
-    <li class= "<%='active' if @camp_application.steps['step_five'].present?%> <%= 'current' if current_step == 'step_five'%>"><%= link_to 'Step Five', camp_application_path(:step_five) %></li>
-
-    <li class= "<%='active' if @camp_application.steps['step_six'].present?%> <%= 'current' if current_step == 'step_six'%>"><%= link_to 'Step Six', camp_application_path(:step_six)%></li>
-
-    <li class= "<%='active' if @camp_application.steps['step_seven'].present?%> <%= 'current' if current_step == 'step_seven'%>"><%= link_to 'Step Seven', camp_application_path(:step_seven)%></li>
-
-    <li class= "<%='active' if @camp_application.steps['step_eight'].present?%> <%= 'current' if current_step == 'step_eight'%>"><%= link_to 'Step Eight', camp_application_path(:step_eight)%></li>
-
-    <li  class= "<%='active' if @camp_application.steps['step_nine'].present?%> <%= 'current' if current_step == 'step_nine'%>"><%= link_to 'Step Nine', camp_application_path(:step_nine)%></li>
-
-    <li class= "<%='active' if @camp_application.steps['step_ten'].present?%> <%= 'current' if current_step == 'step_ten'%>"><%= link_to 'Step Ten', camp_application_path(:step_ten)%></li>
+    <% @camp_application.steps.keys.each do |key| %>
+      <li class= "<%= 'active' if @camp_application.steps[key].present? %> <%= 'current' if current_step == key %>" ><%= link_to key.humanize, camp_application_path(key.to_sym) %></li>
+    <% end %>
   </ul>
 </div>

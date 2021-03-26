@@ -13,5 +13,4 @@ class Camp < ApplicationRecord
   def valid_dates?
     errors.add(:end_date, 'must be greater than start date') if start_date >= end_date
   end
-  
 end

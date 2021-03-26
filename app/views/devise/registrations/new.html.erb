@@ -4,51 +4,51 @@
   <div class="flex">
     <div class="field">
       <%= f.label :first_name, 'First Name*' %><br />
-      <%=resource.errors.full_messages_for(:first_name).join(', ')%>
+      <%= resource.errors.full_messages_for(:first_name).join(', ') %>
       <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", required: true %>
     </div>
 
     <div class="field">
       <%= f.label :middle_name, 'Middle Name' %><br />
-      <%=resource.errors.full_messages_for(:middle_name).join(', ')%>
+      <%= resource.errors.full_messages_for(:middle_name).join(', ') %>
       <%= f.text_field :middle_name, autofocus: true, autocomplete: "middle_name" %>
     </div>
 
     <div class="field">
       <%= f.label :last_name, 'Last Name*' %><br />
-      <%=resource.errors.full_messages_for(:last_name).join(', ')%>
+      <%= resource.errors.full_messages_for(:last_name).join(', ') %>
       <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", required: true %>
     </div>
   </div>
 
   <div class="field">
     <%= f.label :country, 'Country*' %><br />
-    <%=resource.errors.full_messages_for(:country).join(', ')%>
+    <%= resource.errors.full_messages_for(:country).join(', ') %>
     <%= f.country_select :country %>
   </div>
 
   <div class="field">
     <%= f.label :phone_number, 'Phone Number*' %><br />
-    <%=resource.errors.full_messages_for(:phone_number).join(', ')%>
+    <%= resource.errors.full_messages_for(:phone_number).join(', ') %>
     <%= f.telephone_field :phone_number, required: true %>
   </div>
 
   <div class="field">
     <%= f.label :email, 'Email*' %><br />
-    <%=resource.errors.full_messages_for(:email).join(', ')%>
+    <%= resource.errors.full_messages_for(:email).join(', ') %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
   </div>
 
   <div class="field">
     <%= f.label :password, 'Password*' %>
-    <%=resource.errors.full_messages_for(:password).join(', ')%>
+    <%= resource.errors.full_messages_for(:password).join(', ') %>
     <br />
     <%= f.password_field :password, autocomplete: "new-password", required: true %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation, 'Password Confirmation*' %><br />
-    <%=resource.errors.full_messages_for(:password_confirmation).join(', ')%>
+    <%= resource.errors.full_messages_for(:password_confirmation).join(', ') %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
   </div>
   <br>
@@ -63,10 +63,10 @@
     <%= f.radio_button :terms, "true" %> I agree
   </p>
 
-  <%=resource.errors.full_messages_for(:terms).join(', ')%>
+  <%= resource.errors.full_messages_for(:terms).join(', ') %>
   <br>
   <p>
-    <%= f.radio_button :terms, "false"%> I do not agree
+    <%= f.radio_button :terms, "false" %> I do not agree
   </p>
 
   <br>

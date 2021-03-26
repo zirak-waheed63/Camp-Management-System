@@ -1,14 +1,14 @@
 <h2>Step Ten</h2>
-<%= render partial: 'shared/progressbar', locals: {current_step: 'step_ten'}%>
+<%= render partial: 'shared/progressbar', locals: { current_step: 'step_ten' } %>
 
 <%= form_for @camp_application, url: wizard_path, method: :put do |f| %>
   <div class="field">
-      <%= f.label :step_ten %><br />
-      <%= f.text_field :step_ten, required: true %>
-    </div>
+    <%= f.label :step_ten %><br />
+    <%= f.text_field :step_ten, required: true %>
+  </div>
 
-    <div class="actions">
-      <%= f.submit "Finish & Submit", data: show_confirmation(@camp_application, 'step_ten') %>
-    </div>
-<%end %>
+  <div class="actions">
+    <%= f.submit "Finish & Submit", data: show_confirmation(@camp_application, 'step_ten') %>
+  </div>
+<% end %>
 <%= link_to 'back', previous_wizard_path %>

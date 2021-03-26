@@ -1,8 +1,8 @@
 <h1>Show Application</h1>
 <p>
-  <%if @camp_application.image.attached? %>
-    <img src="<%=url_for(@camp_application.image)%>" class="img-circle img-responsive" style="height: 150px; width: 150px">
-  <%end %>
+  <% if @camp_application.image.attached? %>
+    <img src="<%= url_for(@camp_application.image) %>" class="img-circle img-responsive" style="height: 150px; width: 150px">
+  <% end %>
 </p>
 <p>
   <strong>Name:</strong>

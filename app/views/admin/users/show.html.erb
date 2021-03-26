@@ -1,29 +1,19 @@
-<h2>My Profile</h2>
+<h2>Show User Profile</h2>
 
 <div class="container">
-  <div cl>
+
+  <div>
     <% if @user.avatar.attached? %>
       <img src="<%= url_for(@user.avatar) %>" class="img-circle img-responsive" style="height: 200px; width: 200px">
     <% end %>
   </div>
-
   <div class="field">
-     <b>Name:</b>
+    <b>Name:</b>
     <%= @user.first_name + ' ' %>
     <% if @user.middle_name.present? %>
       <%= @user.middle_name + ' ' %>
     <% end %>
     <%= @user.last_name %>
-  </div>
-  
-  <div class="field">
-    <b>Country:</b>
-    <%= country_name(@user.country) %>
-  </div>
-
-  <div class="field">
-    <b>Phone Number:</b>
-    <%= @user.phone_number %>
   </div>
 
   <div class="field">
@@ -31,5 +21,5 @@
     <%= @user.email %>
   </div>
 
-  <%= link_to 'Edit Profile', edit_user_registration_path, class:'btn btn-primary active' %>
+  <%= link_to 'Edit User', edit_admin_user_path(@user), class:'btn btn-primary' %>
 </div>

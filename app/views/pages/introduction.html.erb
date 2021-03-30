@@ -9,13 +9,13 @@
   <p>This registration form is for both CONNECT camps that will take place during:</p>
   
   <ul>
-    <li><strong><%= "#{ @camp.name } : #{ @camp.start_date } to #{ @camp.end_date }" %></strong></li>
+    <li><strong><%= "#{@camp.name} : #{@camp.start_date} to #{@camp.end_date}" %></strong></li>
   </ul>
   If you have any questions during the application process, please feel free to email  at info@projectname.com.
 
   <p>I AKNOWLEDGE AND AGREE THAT ANY INFORMATION PROVIDED IN THIS APPLICATION WILL BE COLLECTED AND PROCESSED IN
   ACCORDANCE WITH THE <a href="https://www.google.com">Privacy Policy</a>.</p>
-	<p>
-		<%= link_to 'start', camp_applications_path, method: :post, class: "btn btn-info active" %>
-	</p>
+  <p>
+    <%= link_to 'start', camp_applications_path, method: :post, class: "btn btn-info active" %>
+  </p>
 <% end %>

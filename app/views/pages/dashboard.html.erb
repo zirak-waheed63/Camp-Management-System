@@ -11,7 +11,7 @@
   <p>This registration form is for both CONNECT camps that will take place during:</p>
   
   <ul>
-    <li><strong><%= "#{ @camp.name } : #{ @camp.start_date } to #{ @camp.end_date }" %></strong></li>
+    <li><strong><%= "#{@camp.name} : #{@camp.start_date} to #{@camp.end_date}" %></strong></li>
   </ul>
   
   If you have any questions during the application process, please feel free to email  at info@projectname.com.
@@ -26,7 +26,7 @@
     <table class="table table-hover">
       <tbody>
         <% @camp_application.steps.keys.each do |key| %>
-          <tr class="row"><td><%= link_to key.humanize, camp_application_path(key), class: "btn btn-#{ get_class(@camp_application, key) } btn-lg btn-block active" %></td></tr>
+          <tr class="row"><td><%= link_to key.humanize, camp_application_path(key), class: "btn btn-#{get_class(@camp_application, key)} btn-lg btn-block active" %></td></tr>
         <% end %>
       </tbody>
     </table>

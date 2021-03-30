@@ -49,11 +49,11 @@ class CampLocationsController < Admin::BaseController
 
   private
   
-    def set_camp_location
-      @camp_location = CampLocation.find(params[:id])
-    end
+  def set_camp_location
+    @camp_location = CampLocation.find(params[:id])
+  end
 
-    def camp_location_params
-      params.require(:camp_location).permit(:name)
-    end
+  def camp_location_params
+    params.require(:camp_location).permit(:name)
+  end
 end

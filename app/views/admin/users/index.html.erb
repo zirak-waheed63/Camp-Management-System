@@ -1,10 +1,11 @@
 <h1>All Users</h1>
-  <div>
-    <%= form_tag search_admin_users_path, class: 'navbar-form navbar-right', method: :get do %>
-      <%= search_field_tag :search, params[:search] %>
-      <%= submit_tag "search", class: 'btn btn-default', name: nil %>
-    <% end %>
-  </div>
+<div>
+  <%= form_tag search_admin_users_path, class: 'navbar-form navbar-right', method: :get do %>
+    <%= search_field_tag :search, params[:search] %>
+    <%= submit_tag "search", class: 'btn btn-default', name: nil %>
+  <% end %>
+</div>
+
 <%= link_to 'CSV Download', admin_users_path(:format => :csv),class: 'navbar-form navbar-left' %>
 
 <br><br>
@@ -22,13 +23,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr class="row">
-        <td class="col col-md-3">
-          <%= user.first_name + ' ' %>
-          <% if user.middle_name.present? %>
-            <%= user.middle_name + ' ' %>
-          <% end %>
-          <%= user.last_name %>
-        </td>
+        <td class="col col-md-3"><%= user.full_name %></td>
         <td class="col col-md-4"><%= user.email %></td>
         <td class="col col-md-2"><%= country_name(user.country) %></td>
         <td class="col col-md-3"><%= user.phone_number %></td>

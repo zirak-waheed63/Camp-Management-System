@@ -8,7 +8,7 @@ module ApplicationHelper
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
     icon = sort_direction == "asc" ? "glyphicon glyphicon-chevron-up" : "glyphicon glyphicon-chevron-down"
     icon = column == sort_column ? icon : ""
-    link_to "#{ title } <span class='#{ icon }'></span>".html_safe, { column: column, direction: direction }
+    link_to "#{title} <span class='#{icon}'></span>".html_safe, { column: column, direction: direction }
   end
 
   def country_name(country_code)
@@ -17,10 +17,8 @@ module ApplicationHelper
   end
   
   def get_class(application, attribute)
-    if application.steps[attribute].present?
-      'success'
-    else
-      'default'
-    end
+    return 'success' if application.steps[attribute].present?
+  
+    'default'
   end
 end

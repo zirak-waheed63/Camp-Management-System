@@ -2,7 +2,7 @@
 <table class="table table-hover">
   <tbody>
     <% @camp_application.steps.keys.each do |key| %>
-      <tr class="row"><td><%= link_to key, admin_camp_application_path(application_id: @camp_application.id, id: key), class: "btn btn-#{ get_class(@camp_application, key) } btn-lg btn-block active" %></td></tr>
+      <tr class="row"><td><%= link_to key, admin_camp_application_path(application_id: @camp_application.id, id: key), class: "btn btn-#{get_class(@camp_application, key)} btn-lg btn-block active" %></td></tr>
     <% end %>
   </tbody>
 </table>

@@ -1,9 +1,10 @@
 class Admin::BaseController < ApplicationController
-  before_action :is_admin?
+  before_action :authenticate_admin
 
   private
 
-  def is_admin?
-    redirect_to root_path if current_user.present? && !current_user.admin?
+  def authenticate_admin
+    return if current_user.admin?
+    redirect_to root_path
   end
 end

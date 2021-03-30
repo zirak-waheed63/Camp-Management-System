@@ -1,19 +1,15 @@
 <h2>Show User Profile</h2>
 
 <div class="container">
-
   <div>
     <% if @user.avatar.attached? %>
-      <img src="<%= url_for(@user.avatar) %>" class="img-circle img-responsive" style="height: 200px; width: 200px">
+      <%= image_tag(@user.avatar , class: "img-circle img-responsive", style: "height: 200px; width: 200px") %>
     <% end %>
   </div>
+  
   <div class="field">
     <b>Name:</b>
-    <%= @user.first_name + ' ' %>
-    <% if @user.middle_name.present? %>
-      <%= @user.middle_name + ' ' %>
-    <% end %>
-    <%= @user.last_name %>
+    <%= @user.full_name %>
   </div>
 
   <div class="field">

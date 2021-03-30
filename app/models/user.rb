@@ -14,6 +14,8 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
 
+  SORTABLE_COLUMNS = %w[first_name phone_number country email].freeze  
+
   def full_name
     [first_name, middle_name, last_name].reject(&:blank?).join(' ')
   end
@@ -48,6 +50,6 @@ class User < ApplicationRecord
   def self.search(query)
     return all if query.blank?
     where('first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR id LIKE ?',
-          "%#{ query }%", "%#{ query }%", "%#{ query }%", "%#{ query }%")
+          "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
   end
 end

@@ -1,9 +1,9 @@
 class BaseController < ApplicationController
-  before_action :is_admin?
+  before_action :authenticate_admin
 
   private
 
-  def is_admin?
+  def authenticate_admin
     redirect_to admin_root_path if current_user.admin?
   end
 end

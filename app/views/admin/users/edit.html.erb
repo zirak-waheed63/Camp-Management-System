@@ -1,52 +1,52 @@
 <h2>Edit User</h2>
-  <ul>
-    <% @user.errors.full_messages.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
+<ul>
+  <% @user.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
 <%= form_for @user, url: admin_user_path, method: :put do |f| %>
-    <div>
-      <% if @user.avatar.attached? %>
-        <img src="<%= url_for(@user.avatar) %>" class="img-circle img-responsive" style="height: 200px; width: 200px">
-      <% end %>
-    </div>
+  <div>
+    <% if @user.avatar.attached? %>
+      <%= image_tag(@user.avatar , class: "img-circle img-responsive", style: "height: 200px; width: 200px") %>
+    <% end %>
+  </div>
 
-    <div class="field">
-      <%= f.label :profile_picture %><br />
-      <%= f.file_field :avatar %>
-    </div>
+  <div class="field">
+    <%= f.label :profile_picture %><br />
+    <%= f.file_field :avatar %>
+  </div>
 
-    <div class="field">
-      <%= f.label :first_name %><br />
-      <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", required: true %>
-    </div>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", required: true %>
+  </div>
 
-    <div class="field">
-      <%= f.label :middle_name %><br />
-      <%= f.text_field :middle_name, autofocus: true, autocomplete: "middle_name" %>
-    </div>
+  <div class="field">
+    <%= f.label :middle_name %><br />
+    <%= f.text_field :middle_name, autofocus: true, autocomplete: "middle_name" %>
+  </div>
 
-    <div class="field">
-      <%= f.label :last_name %><br />
-      <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", required: true %>
-    </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", required: true %>
+  </div>
 
-    <div class="field">
-      <%= f.label :country %><br />
-      <%= f.country_select :country %>
-    </div>
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.country_select :country %>
+  </div>
 
-    <div class="field">
-      <%= f.label :phone_number %><br />
-      <%= f.telephone_field :phone_number, required: true %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
-    </div>
+  <div class="field">
+    <%= f.label :phone_number %><br />
+    <%= f.telephone_field :phone_number, required: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
+  </div>
 
-    <div class="actions">
-      <%= f.submit "Update" %>
-    </div>
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
 <% end %>

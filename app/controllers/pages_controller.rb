@@ -1,5 +1,4 @@
 class PagesController < BaseController
-
   def introduction
     redirect_to dashboard_path if current_user.camp_application.present?
     @camp = Camp.find_by(status: true)

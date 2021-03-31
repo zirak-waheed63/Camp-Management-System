@@ -16,5 +16,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
                :phone_number, :email, :avatar, :password, :password_confirmation, :current_password)
     end
   end
-
 end

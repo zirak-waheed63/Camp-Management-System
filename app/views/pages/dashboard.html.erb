@@ -19,7 +19,7 @@
   <p>I AKNOWLEDGE AND AGREE THAT ANY INFORMATION PROVIDED IN THIS APPLICATION WILL BE COLLECTED AND PROCESSED IN
     ACCORDANCE WITH THE <a href="https://www.google.com">Privacy Policy</a>.</p>
 
-    <% if @camp_application.status == 'active' %>
+    <% if @camp_application.active? %>
       <%= link_to 'Show', view_application_path, class: "btn btn-info active mb-4" %>
     <% else %>
       <%= link_to 'Continue to complete application', camp_application_path(@camp_application.status.to_sym), class: "btn btn-info active mb-4" %>

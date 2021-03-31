@@ -7,7 +7,7 @@
 <%= form_for @user, url: admin_user_path, method: :put do |f| %>
   <div>
     <% if @user.avatar.attached? %>
-      <%= image_tag(@user.avatar , class: "img-circle img-responsive", style: "height: 200px; width: 200px") %>
+      <%= image_tag(@user.avatar , class: "img-circle img-responsive img-dim") %>
     <% end %>
   </div>
 

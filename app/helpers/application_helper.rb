@@ -5,9 +5,9 @@ module ApplicationHelper
 
   def sort_link(column, title = nil)
     title ||= column.titleize
-    direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
-    icon = sort_direction == "asc" ? "glyphicon glyphicon-chevron-up" : "glyphicon glyphicon-chevron-down"
-    icon = column == sort_column ? icon : ""
+    direction = column == User.sort_column(params[:column]) && User.sort_direction(params[:direction]) == "asc" ? "desc" : "asc"
+    icon = User.sort_direction(params[:direction]) == "asc" ? "glyphicon glyphicon-chevron-up" : "glyphicon glyphicon-chevron-down"
+    icon = column == User.sort_column(params[:column]) ? icon : ""
     link_to "#{title} <span class='#{icon}'></span>".html_safe, { column: column, direction: direction }
   end
 

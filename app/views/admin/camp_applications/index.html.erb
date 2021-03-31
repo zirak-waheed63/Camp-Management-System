@@ -21,7 +21,7 @@
         <td class="col col-sm-2"><%= application.email %></td>
         <td class="col col-sm-1"><%= application.progress %>%</td>
         <td class="col col-sm-2"><%= application.camp.name %></td>
-        <td class="col col-sm-1"><%= application.status == 'active'? 'Completed':'In Progress ' %></td>
+        <td class="col col-sm-1"><%= application.active?? 'Completed':'In Progress ' %></td>
 
         <td><%= link_to 'Show', view_admin_camp_application_path(application.id) %></td>
         <td><%= link_to 'Edit', edit_admin_camp_application_path(application) %></td>

@@ -1,7 +1,7 @@
 class CampApplicationsController < BaseController
   include Wicked::Wizard
   before_action :set_application, except: :create
-  before_action :active?, except: [:view_application, :create]
+  before_action :ensure_not_submitted, except: [:view_application, :create]
   before_action :validate_dates, only: [:show, :update]
 
   steps :personal_information, :step_two, :step_three, :step_four, :step_five, :step_six, :step_seven,
@@ -69,7 +69,7 @@ class CampApplicationsController < BaseController
                                              :camp_id)
   end
 
-  def active?
-    redirect_to root_path, alert: 'Application has been submitted. You cannot edit now' if @camp_application.status == 'active'
+  def ensure_not_submitted
+    redirect_to root_path, alert: 'Application has been submitted. You cannot edit now' if @camp_application.active?
   end
 end

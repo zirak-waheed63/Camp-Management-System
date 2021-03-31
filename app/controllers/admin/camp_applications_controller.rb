@@ -22,13 +22,13 @@ class Admin::CampApplicationsController < Admin::BaseController
   end
 
   def view
-    redirect_to admin_camp_applications_path, alert: 'Application is still in progress' unless @camp_application.status == 'active'
+    redirect_to admin_camp_applications_path, alert: 'Application is still in progress' unless @camp_application.active?
   end
 
   def edit; end
 
   def destroy
-    @camp_application.destroy
+    @camp_application.destroy!
     redirect_to admin_camp_applications_path, notice: 'Application has deleted successfully'
   end
 

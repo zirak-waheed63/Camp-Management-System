@@ -6,6 +6,8 @@ class CampApplication < ApplicationRecord
   validates :name, length: { minimum: 5 }, on: :update, allow_nil: true
   
   STEPS = %w[personal_information step_two step_three step_four step_five step_six step_seven step_eight step_nine step_ten]
+  TOTAL_PERCENTAGE = 100.freeze
+  LAST_STEP_PERCENTAGE = 90.freeze
 
   def initialize_steps_hash
     self.steps = STEPS.map { |key| { key => false } }.reduce(&:merge) if self.new_record?
@@ -37,5 +39,9 @@ class CampApplication < ApplicationRecord
         image.attach(user.avatar.blob)
       end
     end
+  end
+
+  def active?
+    status == 'active'
   end
 end

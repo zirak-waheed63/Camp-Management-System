@@ -1,3 +1,9 @@
+.img-dim{
+  height: 150px;
+  width: 150px;
+  margin-bottom: 10px;
+}
+
 .pretty th .current {
   padding-right: 12px;
   background-repeat: no-repeat;
@@ -11,7 +17,6 @@
 .pretty th .desc {
   background-image: url(/images/down_arrow.gif);
 }
-
 
 #msform {
   width: 80%px;
